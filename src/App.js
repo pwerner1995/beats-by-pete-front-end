@@ -5,6 +5,8 @@ import 'typeface-roboto';
 import { connect } from 'react-redux';
 import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist } from './actionCreators'
 import NavBar from './components/navBar'
+import { Route, Switch } from 'react-router-dom'
+import ArtistContainer from './containers/artistContainer'
 
 
 class App extends React.Component{
@@ -22,9 +24,7 @@ class App extends React.Component{
 
     conditionalPlaylist = () => {
         // console.log(this.props.songs[0])
-        console.log(this.props)
         this.props.songs[0].forEach(song => {
-            console.log("Album cover:", song.album_cover)
             this.props.setPlaylist(song) 
         })
     }
@@ -33,12 +33,17 @@ class App extends React.Component{
         // console.log("Songs: ", this.props.songs)
         // console.log("Artists: ", this.props.artists)
         // console.log("Albums:", this.props.albums)
-        console.log("Playlist:", this.props.playlist)
+        // console.log("Playlist:", this.props.playlist)
     
         return (
             <div className="App">
                     {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null}
                     <NavBar />
+                    <Switch>
+                        <Route path = "/artists" render={() => <ArtistContainer />}/>
+                    </Switch>
+
+
                     <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} />
                     
             </div>

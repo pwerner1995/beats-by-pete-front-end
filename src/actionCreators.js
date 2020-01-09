@@ -63,7 +63,6 @@ export const  fetchAlbums = () => {
 }
 
 export const setPlaylist = (song) => {
-    console.log("Song", song)
     return (dispatch) => {
         dispatch({
             type: "SET_PLAYLIST",
