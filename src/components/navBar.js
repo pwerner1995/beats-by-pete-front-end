@@ -8,6 +8,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 
 
 
@@ -35,9 +36,9 @@ export default function NavBar() {
             Beats by Pete
           </Typography>
             <Tabs aria-label="simple tabs example">
-            <Tab label="Artists" />
-            <Tab label="Albums" />
-            <Tab label="Songs" />
+            <Link to="/artists" ><Tab label="Artists" /></Link>
+            <Link to="/albums" ><Tab label="Albums" /></Link>
+            <Link to="/songs" ><Tab label="Songs" /></Link>
             </Tabs>
           <Button color="inherit">Login</Button>
         </Toolbar>

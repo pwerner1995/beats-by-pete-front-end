@@ -9,9 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-import selectArtist from '../actionCreators'
-
-
+import selectSong from '../actionCreators'
 
 const useStyles = makeStyles({
     card: {
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
         height: 120,
       },
 });
-function Artist(props) {
+function Song(props) {
     // let artistAlbums = []
     const classes = useStyles();
     // const albums = () =>{
@@ -33,20 +31,20 @@ function Artist(props) {
     // }
       console.log(props)
       return (
-        <Grid item>
-        <Card className = {classes.card} onClick={()=> selectArtist(props.artist)}>
+          <Grid item>
+        <Card className = {classes.card} margin="10px" onClick={()=> selectSong(props.song)}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
                 component="img"
                 height="140"
                 width="345"
-                image= {props.artist.picture}
-                title= {props.artist.name}
+                image= {props.song.album_cover}
+                title= {props.song.title}
             />
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
-                {props.artist.name}
+                {props.song.title} by {props.song.artist_name}
               </Typography>
                 {/* {this.state.albums.length < 0 ? this.albums() : null}
                 {this.state.albums.forEach(album => {
@@ -75,9 +73,8 @@ function Artist(props) {
       return state
   }
 
-  const mdp = {
-      selectArtist
+  const mdp ={
+      selectSong
   }
 
-
-export default connect(msp, mdp)(Artist)
+export default connect(msp, mdp)(Song)

@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom'
-import Artist from '../components/artist'
+import Album from '../components/album'
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 
-class ArtistContainer extends React.Component {
+class AlbumContainer extends React.Component {
 
 
     render(){
@@ -16,18 +16,19 @@ class ArtistContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="artist-container">
+            <div className="album-container">
                 <Switch>
-                    <Route path="/artists" render={() => {
-                        if(this.props.artists.length > 0) {
-                            return (this.props.artists[0].map(artist => {    
-                                console.log("artist container",artist)
-                                return <Artist artist = {artist} albums = {this.props.albums}/>
+                    <Route path="/albums" render={() => {
+                        if(this.props.albums.length > 0) {
+                            return (this.props.albums[0].map(album => {    
+                                console.log("album container",album)
+                                return <Album album = {album}/>
                             }))
                         }
                     }}/>
+                    <Route path="album/:id" render={}/>
                 </Switch>
-            
+                
                 
 
 
@@ -42,9 +43,8 @@ class ArtistContainer extends React.Component {
 
 const msp = state =>{
     return{
-        artists: state.artists,
         albums: state.albums
     }
 }
 
-export default connect(msp)(ArtistContainer)
+export default connect(msp)(AlbumContainer)

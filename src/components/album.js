@@ -8,8 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import selectAlbum from '../actionCreators'
 import { connect } from 'react-redux';
-import selectArtist from '../actionCreators'
 
 
 
@@ -21,32 +21,24 @@ const useStyles = makeStyles({
         height: 120,
       },
 });
-function Artist(props) {
-    // let artistAlbums = []
+function Album(props) {
     const classes = useStyles();
-    // const albums = () =>{
-    //     artistAlbums = props.albums[0].map(album => {
-    //          if(album.artist_id === props.artist.id){
-    //              this.setState({albums: [...this.state.albums, album.title]})
-    //          }
-    //     })
-    // }
-      console.log(props)
+
       return (
         <Grid item>
-        <Card className = {classes.card} onClick={()=> selectArtist(props.artist)}>
+        <Card className = {classes.card} onClick = {() => slectAlbum(props.album)}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
                 component="img"
                 height="140"
                 width="345"
-                image= {props.artist.picture}
-                title= {props.artist.name}
+                image= {props.album.cover}
+                title= {props.album.title}
             />
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
-                {props.artist.name}
+                {props.album.title}
               </Typography>
                 {/* {this.state.albums.length < 0 ? this.albums() : null}
                 {this.state.albums.forEach(album => {
@@ -72,12 +64,14 @@ function Artist(props) {
   }
 
   function msp(state){
-      return state
+    return {
+      state
+    }
   }
 
   const mdp = {
-      selectArtist
+    selectAlbum
   }
 
 
-export default connect(msp, mdp)(Artist)
+export default connect(msp, mdp)(Album)

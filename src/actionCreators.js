@@ -78,5 +78,26 @@ export const setPlaylist = (song) => {
     }
 }
 
+export function selectAlbum (album){
+    return {
+        type: "SELECT_ALBUM",
+        payload: album
+    }
+}
+
+export function selectArtist (artist){
+    return {
+        type: "SELECT_ARTIST",
+        payload: artist
+    }
+}
+
+export function selectSong (song){
+    return {
+        type: "SELECT_SONG",
+        payload: song
+    }
+}
+
 
 

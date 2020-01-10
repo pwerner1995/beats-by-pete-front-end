@@ -7,6 +7,8 @@ import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist } from './actionCrea
 import NavBar from './components/navBar'
 import { Route, Switch } from 'react-router-dom'
 import ArtistContainer from './containers/artistContainer'
+import AlbumContainer from './containers/albumContainer'
+import SongContainer from './containers/songContainer'
 
 
 class App extends React.Component{
@@ -41,6 +43,8 @@ class App extends React.Component{
                     <NavBar />
                     <Switch>
                         <Route path = "/artists" render={() => <ArtistContainer />}/>
+                        <Route path = "/albums" render={() => <AlbumContainer />}/>
+                        <Route path = "/songs" render={() => <SongContainer />}/>
                     </Switch>
 
 

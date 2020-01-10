@@ -1,17 +1,22 @@
 
 const defaultState = {
-  artists: [],
-  albums: [],
-  songs: [],
-  playlist: [],
-  playlistOverideStylingOpts: {
+    artists: [],
+    albums: [],
+    songs: [],
+    playlist: [],
+    playlistOverideStylingOpts: {
         offset : {
-          left : 0
-        },
-        breakpoint : {
-          maxWidth : 768
-          }
-      }
+            left : 0
+            },
+            breakpoint : {
+                maxWidth : 768
+            }
+    },
+    selectedAlbum: {},
+    selectedArtist: {},
+    selectedSong: {}
+
+
 }
 
 function reducer(prevState = defaultState, action){
@@ -24,6 +29,12 @@ function reducer(prevState = defaultState, action){
       return {...prevState, songs: [...prevState.songs, action.payload.songs]}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [...prevState.playlist, action.payload.playlist]} 
+    case "SELECT_ALBUM":
+        return {...prevState, selectedAlbum: action.payload}
+    case "SELECT_ARTIST":
+        return {...prevState, selectedArtist: action.payload}
+    case "SELECT_SONG":
+        return {...prevState, selectedSong: action.payload}
     default: 
       return prevState
   }
