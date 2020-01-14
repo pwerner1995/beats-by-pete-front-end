@@ -14,7 +14,9 @@ const defaultState = {
     },
     selectedAlbum: {},
     selectedArtist: {},
-    selectedSong: {}
+    selectedSong: {},
+    search: false,
+    searchResults: []
 
 
 }
@@ -35,6 +37,12 @@ function reducer(prevState = defaultState, action){
         return {...prevState, selectedArtist: action.payload}
     case "SELECT_SONG":
         return {...prevState, selectedSong: action.payload}
+    case "OPEN_SEARCH":
+        return {...prevState, search: !prevState.search}
+    case "FETCH_SEARCH":
+        return {...prevState, searchResults: [...prevState.searchResults, action.payload.searchResults] }
+    case "RESET_SEARCH":
+        return {...prevState, searchResults: [] }
     default: 
       return prevState
   }

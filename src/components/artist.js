@@ -2,14 +2,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-import selectArtist from '../actionCreators'
+import {selectArtist} from '../actionCreators'
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -31,10 +33,11 @@ function Artist(props) {
     //          }
     //     })
     // }
-      console.log(props)
+      // console.log(props)
       return (
         <Grid item>
-        <Card className = {classes.card} onClick={()=> selectArtist(props.artist)}>
+        <Link to ={`/artists/${props.artist.id}`}>
+        <Card className = {classes.card} onClick={()=> props.selectArtist(props.artist)}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
@@ -66,6 +69,7 @@ function Artist(props) {
             </Button>
           </CardActions> */}
         </Card>
+        </Link>
         </Grid>
       );
 

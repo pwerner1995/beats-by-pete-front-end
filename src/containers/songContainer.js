@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import SongPage from '../components/songPage'
 
 class SongContainer extends React.Component {
 
@@ -37,7 +38,8 @@ class SongContainer extends React.Component {
               <Grid container flexGrow={1} >
                 {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
                 <Switch>
-                    <Route path="/songs" render={() => {
+                    <Route path="/songs/:id" render={()=> <SongPage />}/>
+                    <Route exact path="/songs" render={() => {
                         if(this.props.songs.length > 0) {
                             return (this.props.songs[0].map(song => {    
                                 console.log("song container",song)

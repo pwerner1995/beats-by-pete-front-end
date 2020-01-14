@@ -2,15 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import selectAlbum from '../actionCreators'
+import {selectAlbum} from '../actionCreators'
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -23,10 +23,12 @@ const useStyles = makeStyles({
 });
 function Album(props) {
     const classes = useStyles();
+    
 
       return (
         <Grid item>
-        <Card className = {classes.card} onClick = {() => slectAlbum(props.album)}>
+        <Link to={`/albums/${props.album.id}`} >
+        <Card className = {classes.card} onClick = {() => props.selectAlbum(props.album)}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
@@ -58,6 +60,7 @@ function Album(props) {
             </Button>
           </CardActions> */}
         </Card>
+        </Link>
         </Grid>
       );
 

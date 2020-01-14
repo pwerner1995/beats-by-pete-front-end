@@ -6,13 +6,16 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
+// import PropTypes from 'prop-types';
+// import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {openSearchForm} from '../actionCreators'
 
 
 
-export default function NavBar() {
+
+ function NavBar(props) {
   
   const useStyles = makeStyles(theme => ({
     root: {
@@ -33,12 +36,13 @@ export default function NavBar() {
       <AppBar position="static" style = {{backgroundColor: "pink"}}>
         <Toolbar>
           <Typography variant="h6" >
-            Beats by Pete
+            Deezer's Teasers
           </Typography>
             <Tabs aria-label="simple tabs example">
             <Link to="/artists" ><Tab label="Artists" /></Link>
             <Link to="/albums" ><Tab label="Albums" /></Link>
             <Link to="/songs" ><Tab label="Songs" /></Link>
+            <Tab label="Search" onClick={() => props.openSearchForm()}/>
             </Tabs>
           <Button color="inherit">Login</Button>
         </Toolbar>
@@ -46,5 +50,15 @@ export default function NavBar() {
     </div>
   );
 }
-     
 
+function msp(state){
+  return{
+    state
+  }
+}
+
+const mdp ={
+  openSearchForm
+}
+     
+export default connect(msp, mdp)(NavBar)

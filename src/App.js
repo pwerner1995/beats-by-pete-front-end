@@ -9,6 +9,8 @@ import { Route, Switch } from 'react-router-dom'
 import ArtistContainer from './containers/artistContainer'
 import AlbumContainer from './containers/albumContainer'
 import SongContainer from './containers/songContainer'
+import SearchFrom from './components/searchForm'
+import SearchResultsContainer from './containers/searchResultsContainer'
 
 
 class App extends React.Component{
@@ -41,11 +43,13 @@ class App extends React.Component{
             <div className="App">
                     {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null}
                     <NavBar />
-                    <Switch>
+                    {this.props.search ? <SearchFrom /> : null}
+                    {!this.props.search ? <Switch>
                         <Route path = "/artists" render={() => <ArtistContainer />}/>
                         <Route path = "/albums" render={() => <AlbumContainer />}/>
                         <Route path = "/songs" render={() => <SongContainer />}/>
-                    </Switch>
+                    </Switch> : <SearchResultsContainer />}
+                    
 
 
                     <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} />
@@ -62,7 +66,9 @@ class App extends React.Component{
             artists: state.artists,
             albums: state.albums,
             playlist: state.playlist,
-            playlistOverideStylingOpts: state.playlistOverideStylingOpts
+            playlistOverideStylingOpts: state.playlistOverideStylingOpts,
+            search: state.search,
+            searchResults: state.searchResults
         }
     }
 

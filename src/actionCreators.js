@@ -79,6 +79,7 @@ export const setPlaylist = (song) => {
 }
 
 export function selectAlbum (album){
+    
     return {
         type: "SELECT_ALBUM",
         payload: album
@@ -96,6 +97,26 @@ export function selectSong (song){
     return {
         type: "SELECT_SONG",
         payload: song
+    }
+}
+export function openSearchForm (){
+    return {
+        type: "OPEN_SEARCH"
+    }
+}
+
+export function setSearchResults(results){
+    return{
+        type: "FETCH_SEARCH",
+        payload: {
+            searchResults: results
+        }
+    }
+}
+
+export function resetSearchResults(){
+    return{
+        type: "RESET_SEARCH"
     }
 }
 

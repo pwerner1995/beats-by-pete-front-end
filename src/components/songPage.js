@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import {selectSong} from '../actionCreators'
-import { Link } from 'react-router-dom';
-
 
 const useStyles = makeStyles({
     card: {
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
         height: 120,
       },
 });
-function Song(props) {
+function SongPage(props) {
     // let artistAlbums = []
     const classes = useStyles();
     // const albums = () =>{
@@ -31,11 +29,10 @@ function Song(props) {
     //          }
     //     })
     // }
-      console.log(props)
+      console.log(props.song)
       return (
         <Grid item>
-        <Link to={`/songs/${props.song.id}`}>
-        <Card className = {classes.card} margin="10px" onClick={()=> props.selectSong(props.song)}>
+        <Card className = {classes.card} >
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
@@ -67,18 +64,16 @@ function Song(props) {
             </Button>
           </CardActions> */}
         </Card>
-        </Link>
         </Grid>
       );
 
   }
 
   function msp(state){
-      return state
+    console.log(state)  
+    return {
+          song: state.selectedSong
+      }
   }
 
-  const mdp ={
-      selectSong
-  }
-
-export default connect(msp, mdp)(Song)
+export default connect(msp)(SongPage)
