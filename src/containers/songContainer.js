@@ -41,9 +41,11 @@ class SongContainer extends React.Component {
                     <Route path="/songs/:id" render={()=> <SongPage />}/>
                     <Route exact path="/songs" render={() => {
                         if(this.props.songs.length > 0) {
-                            return (this.props.songs[0].map(song => {    
-                                console.log("song container",song)
-                                return <Song song = {song}/>
+                            return (this.props.songs.map((array) => {
+                                return array.map(song => {    
+                                    console.log("song container",song)
+                                    return <Song song = {song}/>
+                                })
                             }))
                         }
                     }}/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Playlist from 'react-mp3-player';
+import Player from 'react-mp3-player';
 import 'typeface-roboto';
 import { connect } from 'react-redux';
 import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist } from './actionCreators'
@@ -41,7 +42,7 @@ class App extends React.Component{
     
         return (
             <div className="App">
-                    {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null}
+                    {/* {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null} */}
                     <NavBar />
                     {this.props.search ? <SearchFrom /> : null}
                     {!this.props.search ? <Switch>
@@ -52,7 +53,7 @@ class App extends React.Component{
                     
 
 
-                    <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} />
+                    {this.props.player ? <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} /> : null }
                     
             </div>
             );
@@ -68,7 +69,8 @@ class App extends React.Component{
             playlist: state.playlist,
             playlistOverideStylingOpts: state.playlistOverideStylingOpts,
             search: state.search,
-            searchResults: state.searchResults
+            searchResults: state.searchResults,
+            player: state.player
         }
     }
 

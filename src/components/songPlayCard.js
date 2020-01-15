@@ -10,6 +10,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 // import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
+import {setPlaylist, playingSong, resetPlaylist, showPlayer} from '../actionCreators'
+import { connect } from 'react-redux';
+import PauseIcon from '@material-ui/icons/Pause';
 
 // let fontTheme = createMuiTheme({
 //     typography: {
@@ -53,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SongPlayCard(props) {
+function SongPlayCard(props) {
   const classes = useStyles();
   const theme = useTheme();
   console.log(props.song.title)
@@ -76,7 +79,16 @@ export default function SongPlayCard(props) {
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
           </IconButton>
           <IconButton aria-label="play/pause">
-            <PlayArrowIcon className={classes.playIcon} />
+            {!props.playing ? <PlayArrowIcon className={classes.playIcon} onClick ={() => {
+                  if(!props.playlist.includes(props.song)){
+                    props.setPlaylist(props.song)
+                    props.playingSong()
+                  }
+                  }}/> : <PauseIcon className={classes.playIcon} onClick ={() =>{
+                    props.playingSong();
+                    props.showPlayer()
+                    props.resetPlaylist();
+                  }}/>}
           </IconButton>
           <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
@@ -92,3 +104,19 @@ export default function SongPlayCard(props) {
     </Card>
   );
 }
+
+const msp = (state) =>{
+  return {
+    playlist: state.playlist,
+    playing: state.playing
+  }
+}
+
+const mdp ={
+  setPlaylist,
+  playingSong,
+  resetPlaylist,
+  showPlayer
+}
+
+export default connect(msp, mdp)(SongPlayCard)

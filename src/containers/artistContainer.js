@@ -22,9 +22,12 @@ class ArtistContainer extends React.Component {
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
                     <Route path="/artists" render={() => {
                         if(this.props.artists.length > 0) {
-                            return (this.props.artists[0].map(artist => {    
-                                // console.log("artist container",artist)
-                                return <Artist artist = {artist} albums = {this.props.albums}/>
+                            return (this.props.artists.map((array) =>{
+                                console.log("artists cont", array)
+                                return array.map(artist => {    
+                                    // console.log("artist container",artist)
+                                    return <Artist artist = {artist} albums = {this.props.albums}/>
+                                })
                             }))
                         }
                     }}/>

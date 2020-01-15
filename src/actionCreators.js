@@ -63,8 +63,22 @@ export const  fetchAlbums = () => {
 
 }
 
+export function showPlayer(){
+    return{
+        type: "SHOW_PLAYER"
+    }
+}
+export function resetPlaylist(){
+    return{
+        type: "RESET_PLAYLIST"
+    }
+}
 export const setPlaylist = (song) => {
+    // showPlayer()
+    // resetPlaylist()
     return (dispatch) => {
+        dispatch({type: "SHOW_PLAYER"})
+        dispatch({type: "RESET_PLAYLIST"})
         dispatch({
             type: "SET_PLAYLIST",
             payload: {
@@ -76,6 +90,14 @@ export const setPlaylist = (song) => {
                     }
                 }
         })
+
+        
+    }
+}
+
+export function playingSong(){
+    return{
+        type: "SET_PLAYING_BOOL"
     }
 }
 

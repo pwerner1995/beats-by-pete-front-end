@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import {selectSong} from '../actionCreators'
+import SongPlayCard from './songPlayCard'
 
 const useStyles = makeStyles({
     card: {
@@ -31,40 +32,41 @@ function SongPage(props) {
     // }
       console.log(props.song)
       return (
-        <Grid item>
-        <Card className = {classes.card} >
-          <CardActionArea>
-            <CardMedia
-                className = {classes.media}
-                component="img"
-                height="140"
-                width="345"
-                image= {props.song.album_cover}
-                title= {props.song.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="p" component="p">
-                {props.song.title} by {props.song.artist_name}
-              </Typography>
-                {/* {this.state.albums.length < 0 ? this.albums() : null}
-                {this.state.albums.forEach(album => {
-                    return(<Typography variant="body2" color="textSecondary" component="p">
-                        album
-                    </Typography>)
-                })
-                } */}
-            </CardContent>
-          </CardActionArea>
-          {/* <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions> */}
-        </Card>
-        </Grid>
+        <SongPlayCard song = {props.song}/>
+        // <Grid item>
+        // <Card className = {classes.card} >
+        //   <CardActionArea>
+        //     <CardMedia
+        //         className = {classes.media}
+        //         component="img"
+        //         height="140"
+        //         width="345"
+        //         image= {props.song.album_cover}
+        //         title= {props.song.title}
+        //     />
+        //     <CardContent>
+        //       <Typography gutterBottom variant="p" component="p">
+        //         {props.song.title} by {props.song.artist_name}
+        //       </Typography>
+        //         {/* {this.state.albums.length < 0 ? this.albums() : null}
+        //         {this.state.albums.forEach(album => {
+        //             return(<Typography variant="body2" color="textSecondary" component="p">
+        //                 album
+        //             </Typography>)
+        //         })
+        //         } */}
+        //     </CardContent>
+        //   </CardActionArea>
+        //   {/* <CardActions>
+        //     <Button size="small" color="primary">
+        //       Share
+        //     </Button>
+        //     <Button size="small" color="primary">
+        //       Learn More
+        //     </Button>
+        //   </CardActions> */}
+        // </Card>
+        // </Grid>
       );
 
   }

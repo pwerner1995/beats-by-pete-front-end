@@ -25,9 +25,11 @@ class AlbumContainer extends React.Component {
                             }}/>        
                     <Route exact path="/albums" render={() => {
                         if(this.props.albums.length > 0) {
-                            return (this.props.albums[0].map(album => {    
-                                // console.log("album container",album)
-                                return <Album album = {album}/>
+                            return (this.props.albums.map((array) =>{
+                                return array.map(album => {    
+                                    // console.log("album container",album)
+                                    return <Album album = {album}/>
+                                })
                             }))
                         }
                     }}/>

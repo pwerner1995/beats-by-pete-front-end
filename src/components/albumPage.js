@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 // import {selectAlbum} from '../actionCreators'
 import { connect } from 'react-redux';
-import SongPlayCard from './songPlayCard'
+import Song from './song'
 import {selectAlbum} from '../actionCreators'
 
 
@@ -79,7 +79,7 @@ function AlbumPage(props) {
               </CardActions> */}
             </Card>
             <div>
-                {albumSongs.map(song => <SongPlayCard song = {song}/>)}
+                {albumSongs.map(song => <Song song = {song}/>)}
             </div>
             </Grid>
     

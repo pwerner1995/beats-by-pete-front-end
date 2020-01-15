@@ -95,8 +95,27 @@ function SearchForm(props) {
         console.log("props artists", props.artists)
         // console.log(props.artists[0].filter(a => a.name.includes(artist)).length)
         // console.log(props.artists[0].forEach(a => console.log(a.name.toUpperCase().includes(artist))))
+        let artistsArray = []
+        let albumsArray = []
+        let songsArray = []
+        artistsArray = props.artists[0].filter(a => a.name.toUpperCase().includes(artist))
+        albumsArray = props.albums[0].filter(a => a.artist_name.toUpperCase().includes(artist))
+        songsArray = props.songs[0].filter(a => a.artist_name.toUpperCase().includes(artist))
 
-        if(props.artists[0].filter(a => a.name.toUpperCase().includes(artist)).length < 1){
+        if(album.length > 2){
+            albumsArray = [...albumsArray, ...props.albums[0].filter(a => a.title.toUpperCase().includes(album))]
+            songsArray = [...songsArray, ...props.songs[0].filter(a => a.album_name.toUpperCase().includes(album))]
+        }
+        
+        if(song.length > 2){
+            songsArray = [...songsArray, props.songs[0].filter(a => a.title.toUpperCase().includes(song))]
+        }
+        // console.log("filter aristArray", aristArray)
+        props.setArtistSearchResults(artistsArray)
+        props.setAlbumSearchResults(albumsArray)
+        props.setSongSearchResults(songsArray)
+        
+        
             fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchString}`, {
                 "method": "GET",
                 "headers": {
@@ -115,12 +134,6 @@ function SearchForm(props) {
                 // props.setSongSearchResults(data)
     
             });
-        }else{
-            let array = []
-            array = props.artists[0].filter(a => a.name.toUpperCase().includes(artist))
-            // console.log("filter array", array)
-            props.setArtistSearchResults(array[0])
-        }
         
     }
 

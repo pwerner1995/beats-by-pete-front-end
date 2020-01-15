@@ -5,7 +5,9 @@ import Album from '../components/album'
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Artist from '../components/artist'
-import SongPlayCard from '../components/songPlayCard'
+import Song from '../components/song'
+
+
 // import Album from '../components/album'
 // import {openSearchForm} from '../actionCreators'
 
@@ -13,7 +15,7 @@ import SongPlayCard from '../components/songPlayCard'
 
 class SearchResultsContainer extends React.Component {
 
-    renderArtists(){
+    renderArtists = () =>{
         let showArtists = []
         console.log(this.props.artistSearchResults)
         if(this.props.artistSearchResults[0].data){
@@ -32,14 +34,17 @@ class SearchResultsContainer extends React.Component {
                 return <Artist artist = {artist} />
             })
         }else{
-            showArtists = this.props.artistSearchResults[0]
-            return showArtists.map((artist) => {
-                return <Artist artist = {artist} />
+            // debugger
+            showArtists = this.props.artistSearchResults
+            return showArtists.map((array) => {
+                return array.map((artist) => {
+                    return <Artist artist = {artist} />
+                })
             })
         }
     }
 
-    renderAlbums(){
+    renderAlbums = () =>{
         let showAlbums = []
         console.log(this.props.albumSearchResults)
         if(this.props.albumSearchResults[0].data){
@@ -58,14 +63,16 @@ class SearchResultsContainer extends React.Component {
                 return <Album album = {album} />
             })
         }else{
-            showAlbums = this.props.albumSearchResults[0]
-            return showAlbums.map((album) => {
-                return <Album album = {album} />
+            showAlbums = this.props.albumSearchResults
+            return showAlbums.map((array) =>{
+                return array.map((album) => {
+                    return <Album album = {album} />
+                })
             })
         }
     }
 
-    renderSongs(){
+    renderSongs = () =>{
         let showSongs = []
         console.log(this.props.songSearchResults)
         if(this.props.songSearchResults[0].data){
@@ -83,12 +90,15 @@ class SearchResultsContainer extends React.Component {
                 }
             })
             return showSongs.map((song) => {
-                return <SongPlayCard song = {song} />
+                return <Song song = {song} />
             })
         }else{
-            showSongs = this.props.songSearchResults[0]
-            return showSongs.map((song) => {
-                return <SongPlayCard song = {song} />
+            // console.log()
+            showSongs = this.props.songSearchResults
+            return showSongs.map((array)=>{
+                return array.map((song) => {
+                    return <Song song = {song} />
+                })
             })
         }
     }
@@ -96,10 +106,10 @@ class SearchResultsContainer extends React.Component {
 
 
     render(){
-        console.log("Search Results", this.props.artistSearchResults)
-        console.log("Artists: ", this.props.artists)
-        console.log("Albums: ", this.props.albums)
-        console.log("Songs: ", this.props.songs)
+        // console.log("Search Results", this.props.artistSearchResults)
+        // console.log("Artists: ", this.props.artists)
+        // console.log("Albums: ", this.props.albums)
+        // console.log("Songs: ", this.props.songs)
         return (
             <React.Fragment>
             <CssBaseline />
