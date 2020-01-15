@@ -3,7 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import {setSearchResults} from '../actionCreators'
+import {setArtistSearchResults,
+    setSongSearchResults,
+    setAlbumSearchResults,
+    resetArtistSearchResults,
+    resetAlbumSearchResults,
+    resetSongSearchResults,
+    postSearch
+    // postAlbums,
+    // postSongs
+
+} from '../actionCreators'
+// import {postSearchResults} from '../postFetch'
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,27 +33,57 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
+
 function SearchForm(props) {
     const classes = useStyles();
     const [artist, setArtist] = React.useState('')
     const [album, setAlbum] = React.useState('')
     const [song, setSong] = React.useState('')
 
-
+    
     const handleArtistChange = (e) => {
-        setArtist(e.target.value)
+        setArtist(e.target.value.toUpperCase())
     }
 
     const handleAlbumChange = (e) => {
-        setAlbum(e.target.value)
+        setAlbum(e.target.value.toUpperCase())
     }
 
     const handleSongChange = (e) => {
-        setSong(e.target.value)
+        setSong(e.target.value.toUpperCase())
+    }
+
+    const postSearchResults = (results) =>{
+        // console.log(props)
+        // const state =  store.getState()
+        // console.log("state: ",state)
+        let songs = []
+        let artists = []
+        let albums = []
+        results.data.forEach((song) => {
+            console.log(artists)
+            if(props.songs[0].filter(s => s.title.toUpperCase().includes(song.title.toUpperCase())).length < 1 ){
+                songs.push(song)
+                // if(props.artists[0].filter(a => a.name.toUpperCase().includes(song.artist.name.toUpperCase())).length < 1 ){
+                //     artists.push(song.artist)
+                // }
+                // if(props.albums[0].filter(a => a.title.toUpperCase().includes(song.album.title.toUpperCase())).length < 1 ){
+                    
+                //     albums.push({album: song.album, artist: song.artist.name})
+                // }
+            }
+        })
+        props.postSearch(songs)
+       
+        
     }
 
     const fetchSearch = (e) => {
         e.preventDefault()
+        props.resetArtistSearchResults()
+        props.resetAlbumSearchResults()
+        props.resetSongSearchResults()
         let searchString =[]
         let artistString =""
         let albumString =""
@@ -52,10 +93,10 @@ function SearchForm(props) {
         songString = song.split(' ').join('%20')
         searchString = [artistString, albumString, songString].join('%20')
         console.log("props artists", props.artists)
-        console.log(props.artists[0].filter(a => a.name.includes(artist)).length)
-        console.log(props.artists[0].forEach(a => console.log(a.name.includes(artist))))
+        // console.log(props.artists[0].filter(a => a.name.includes(artist)).length)
+        // console.log(props.artists[0].forEach(a => console.log(a.name.toUpperCase().includes(artist))))
 
-        if(props.artists[0].filter(a => a.name.includes(artist)).length < 1){
+        if(props.artists[0].filter(a => a.name.toUpperCase().includes(artist)).length < 1){
             fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchString}`, {
                 "method": "GET",
                 "headers": {
@@ -67,22 +108,25 @@ function SearchForm(props) {
                 return resp.json();
             })
             .then(data => {
-                console.log(data);
-                props.setSearchResults(data)
+                // console.log(data);
+                postSearchResults(data)
+                // props.setArtistSearchResults(data)
+                // props.setAlbumSearchResults(data)
+                // props.setSongSearchResults(data)
     
             });
         }else{
             let array = []
-            array = props.artists[0].filter(a => a.name.includes(artist))
-            console.log("filter array", array)
-            props.setSearchResults(array[0])
+            array = props.artists[0].filter(a => a.name.toUpperCase().includes(artist))
+            // console.log("filter array", array)
+            props.setArtistSearchResults(array[0])
         }
         
     }
 
-    console.log("Artist: ", artist)
-    console.log("Album: ", album)
-    console.log("Song: ", song)
+    // console.log("Artist: ", artist)
+    // console.log("Album: ", album)
+    // console.log("Song: ", song)
 
 
     return (
@@ -128,12 +172,22 @@ function SearchForm(props) {
 
 function msp(state){
     return {
-        artists: state.artists
+        artists: state.artists,
+        songs: state.songs,
+        albums: state.albums
     }
 }
 
 const mdp ={
-    setSearchResults,
+    setArtistSearchResults,
+    setSongSearchResults,
+    setAlbumSearchResults,
+    resetArtistSearchResults,
+    resetAlbumSearchResults,
+    resetSongSearchResults,
+    postSearch
+    // postAlbums,
+    // postSongs
 }
 
 export default connect(msp, mdp)(SearchForm)

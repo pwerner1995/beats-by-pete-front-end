@@ -11,7 +11,7 @@ export const  fetchArtists = () => {
         })
         .then(resp => resp.json())
         .then(data => dispatch({
-            type: "FETCH_ARTISTS",
+            type: "SET_ARTISTS",
             payload: {artists: data}
         }))
     }
@@ -19,6 +19,7 @@ export const  fetchArtists = () => {
     
 
 }
+
 export const  fetchSongs = () => {
     
     return (dispatch) => {
@@ -32,7 +33,7 @@ export const  fetchSongs = () => {
         })
         .then(resp => resp.json())
         .then(data => dispatch({
-            type: "FETCH_SONGS",
+            type: "SET_SONGS",
             payload: {songs: data}
         }
 
@@ -55,7 +56,7 @@ export const  fetchAlbums = () => {
         })
         .then(resp => resp.json())
         .then(data => dispatch({
-            type: "FETCH_ALBUMS",
+            type: "SET_ALBUMS",
             payload: {albums: data}
         }))
     } 
@@ -78,6 +79,28 @@ export const setPlaylist = (song) => {
     }
 }
 
+export function setArtist(data){
+    return{
+        type: "SET_ARTISTS",
+        payload: {artists: data}
+    }
+}
+
+export function setAlbum(data){
+    return{
+        type: "SET_ALBUMS",
+        payload: {albums: data}
+    }
+}
+
+export function setSong(data){
+    return{
+        type: "SET_ALBUMS",
+        payload: {albums: data}
+    }
+}
+
+
 export function selectAlbum (album){
     
     return {
@@ -99,26 +122,176 @@ export function selectSong (song){
         payload: song
     }
 }
+
 export function openSearchForm (){
     return {
         type: "OPEN_SEARCH"
     }
 }
 
-export function setSearchResults(results){
+export function setArtistSearchResults(results){
     return{
-        type: "FETCH_SEARCH",
+        type: "SET_ARTIST_RESULTS",
         payload: {
-            searchResults: results
+            artistSearchResults: results
         }
     }
 }
 
-export function resetSearchResults(){
+export function setAlbumSearchResults(results){
     return{
-        type: "RESET_SEARCH"
+        type: "SET_ALBUM_RESULTS",
+        payload: {
+            albumSearchResults: results
+        }
     }
 }
+
+export function setSongSearchResults(results){
+    return{
+        type: "SET_SONG_RESULTS",
+        payload: {
+            songSearchResults: results
+        }
+    }
+}
+
+export function resetArtistSearchResults(){
+    return{
+        type: "RESET_ARTIST_SEARCH"
+    }
+}
+
+export function resetAlbumSearchResults(){
+    return{
+        type: "RESET_ALBUM_SEARCH"
+    }
+}
+
+export function resetSongSearchResults(){
+    return{
+        type: "RESET_SONG_SEARCH"
+    }
+}
+
+export const postSearch = (songs) => {
+    // console.log("ARTISTS: ", artists)
+    // console.log("ALBUMS: ", albums)
+    console.log("SONGS: ", songs)
+    // const postAlbums = (albums) =>{
+
+    //     return (dispatch) =>{
+            
+    //     }
+    // }
+
+    return (dispatch) => {
+        // artists.forEach((artist) => {
+            fetch("http://localhost:3000/api/v1/artists",{method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    'Access-Control-Allow-Credentials': 'true'
+                },
+                body: JSON.stringify({
+                    songs
+                })
+            })
+            .then(resp => resp.json())
+            .then((resp) => {
+                console.log("response", resp)
+                dispatch({
+                    type: "SET_ARTISTS",
+                    payload: {artists: [...resp.artists]}
+                })
+                dispatch({
+                    type: "SET_ARTIST_RESULTS",
+                    payload: {
+                        artistSearchResults: [...resp.artists]
+                    }
+                })
+                dispatch({
+                    type: "SET_ALBUMS",
+                    payload: {albums: [...resp.albums]}
+                })
+                dispatch({
+                    type: "SET_ALBUM_RESULTS",
+                    payload: {
+                        albumSearchResults: [...resp.albums]
+                    }
+                })
+                dispatch({
+                    type: "SET_SONGS",
+                    payload: {songs: [...resp.songs]}
+                })
+                dispatch({
+                    type: "SET_SONG_RESULTS",
+                    payload: {
+                        songSearchResults: [...resp.songs]
+                    }
+                })
+                // setArtistSearchResults([...resp])
+            })
+        
+            // .then(
+            //     fetch("http://localhost:3000/api/v1/albums",{method: "POST",
+            //         headers:{
+            //             "Content-Type": "application/json",
+            //             "Accept": "application/json",
+            //             "Access-Control-Allow-Origin": "http://localhost:3000",
+            //             'Access-Control-Allow-Credentials': 'true'
+            //         },
+            //         body: JSON.stringify({
+            //             albums
+            //         })
+            //     })
+            //     .then(resp => resp.json())
+            //     .then((resp) => {
+            //         dispatch({
+            //             type: "SET_ALBUMS",
+            //             payload: {albums: resp}
+            //         })
+            //         setAlbumSearchResults(resp)
+            //     })
+            // )
+            // .then(postSongs(songs))
+        
+    }
+}
+   
+
+
+
+// export const postSongs = (songs) =>{
+//     return (dispatch) =>{
+//         songs.forEach((song) => {
+//             fetch("http://localhost:3000/api/v1/songs",{method: "POST",
+//                 headers:{
+//                     "Content-Type": "application/json",
+//                     "Accept": "application/json",
+//                     "Access-Control-Allow-Origin": "http://localhost:3000",
+//                     'Access-Control-Allow-Credentials': 'true'
+//                 },
+//                 body: JSON.stringify({
+//                     song:{
+    
+//                         title: song.title,
+//                         duration: song.duration,
+//                         preview: song.preview
+//                     }
+//                 })
+//             })
+//             .then((resp) => {
+//                 dispatch({
+//                     type: "SET_SONGS",
+//                     payload: {songs: resp}
+//                 })
+//                 setSongSearchResults(resp)
+//             })
+//         })
+//     }
+// }
 
 
 

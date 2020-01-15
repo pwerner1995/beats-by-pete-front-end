@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
+// import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 // let fontTheme = createMuiTheme({
 //     typography: {
@@ -55,17 +56,18 @@ const useStyles = makeStyles(theme => ({
 export default function SongPlayCard(props) {
   const classes = useStyles();
   const theme = useTheme();
-  console.log(props.props.title)
+  console.log(props.song.title)
+
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
         <ThemeProvider >
           <Typography component="subtitle1" variant="subtitle1">
-            {props.props.title}
+            {props.song.title}
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            {props.props.artist_name}
+            {props.song.artist_name}
           </Typography>
         </ThemeProvider>
         </CardContent>
@@ -84,8 +86,8 @@ export default function SongPlayCard(props) {
       <CardMedia
         className={classes.cover}
         component="img"
-        image={props.props.album_cover}
-        title={props.props.title}
+        image={props.song.album_cover}
+        title={props.song.title}
       />
     </Card>
   );

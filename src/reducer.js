@@ -16,18 +16,20 @@ const defaultState = {
     selectedArtist: {},
     selectedSong: {},
     search: false,
-    searchResults: []
+    artistSearchResults: [],
+    albumSearchResults: [],
+    songSearchResults: []
 
 
 }
 
 function reducer(prevState = defaultState, action){
   switch(action.type){
-    case "FETCH_ARTISTS":
+    case "SET_ARTISTS":
       return {...prevState, artists: [...prevState.artists, action.payload.artists]}
-    case "FETCH_ALBUMS":
+    case "SET_ALBUMS":
       return {...prevState, albums: [...prevState.albums, action.payload.albums]}
-    case "FETCH_SONGS":
+    case "SET_SONGS":
       return {...prevState, songs: [...prevState.songs, action.payload.songs]}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [...prevState.playlist, action.payload.playlist]} 
@@ -39,10 +41,18 @@ function reducer(prevState = defaultState, action){
         return {...prevState, selectedSong: action.payload}
     case "OPEN_SEARCH":
         return {...prevState, search: !prevState.search}
-    case "FETCH_SEARCH":
-        return {...prevState, searchResults: [...prevState.searchResults, action.payload.searchResults] }
-    case "RESET_SEARCH":
-        return {...prevState, searchResults: [] }
+    case "SET_ARTIST_RESULTS":
+        return {...prevState, artistSearchResults: [...prevState.artistSearchResults, action.payload.artistSearchResults] }
+    case "SET_ALBUM_RESULTS":
+        return {...prevState, albumSearchResults: [...prevState.albumSearchResults, action.payload.albumSearchResults] }
+    case "SET_SONG_RESULTS":
+        return {...prevState, songSearchResults: [...prevState.songSearchResults, action.payload.songSearchResults] }
+    case "RESET_ARTIST_SEARCH":
+        return {...prevState, artistSearchResults: [] }
+    case "RESET_ALBUM_SEARCH":
+        return {...prevState, albumSearchResults: [] }
+    case "RESET_SONG_SEARCH":
+        return {...prevState, songSearchResults: [] }
     default: 
       return prevState
   }

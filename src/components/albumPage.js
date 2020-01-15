@@ -79,7 +79,7 @@ function AlbumPage(props) {
               </CardActions> */}
             </Card>
             <div>
-                {albumSongs.map(song => <SongPlayCard props = {song}/>)}
+                {albumSongs.map(song => <SongPlayCard song = {song}/>)}
             </div>
             </Grid>
     

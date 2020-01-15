@@ -40,7 +40,7 @@ function Album(props) {
             />
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
-                {props.album.title}
+                {props.album.title} by {props.album.artist_name}
               </Typography>
                 {/* {this.state.albums.length < 0 ? this.albums() : null}
                 {this.state.albums.forEach(album => {
