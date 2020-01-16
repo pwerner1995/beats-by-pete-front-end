@@ -4,8 +4,10 @@ import Playlist from 'react-mp3-player';
 import Player from 'react-mp3-player';
 import 'typeface-roboto';
 import { connect } from 'react-redux';
-import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist } from './actionCreators'
+import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist, fetchUsers } from './actionCreators'
 import NavBar from './components/navBar'
+import SignIn from './components/signIn'
+import SignUp from './components/signUp'
 import { Route, Switch } from 'react-router-dom'
 import ArtistContainer from './containers/artistContainer'
 import AlbumContainer from './containers/albumContainer'
@@ -22,6 +24,7 @@ class App extends React.Component{
         this.props.fetchArtists()
         this.props.fetchAlbums()
         this.props.fetchSongs()
+        this.props.fetchUsers()
         // console.log("Testing songs:",this.props.songs)
         
     }
@@ -43,9 +46,11 @@ class App extends React.Component{
         return (
             <div className="App">
                     {/* {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null} */}
-                    <NavBar />
+                    
+                    {!this.props.signedIn ? <SignIn /> : null}
+                    {this.props.signedIn ? <NavBar /> : null}
                     {this.props.search ? <SearchFrom /> : null}
-                    {!this.props.search ? <Switch>
+                    {!this.props.search && this.props.signedIn? <Switch>
                         <Route path = "/artists" render={() => <ArtistContainer />}/>
                         <Route path = "/albums" render={() => <AlbumContainer />}/>
                         <Route path = "/songs" render={() => <SongContainer />}/>
@@ -70,7 +75,8 @@ class App extends React.Component{
             playlistOverideStylingOpts: state.playlistOverideStylingOpts,
             search: state.search,
             searchResults: state.searchResults,
-            player: state.player
+            player: state.player,
+            signedIn: state.signedIn
         }
     }
 
@@ -79,6 +85,7 @@ class App extends React.Component{
           fetchArtists: () => dispatch(fetchArtists()),
           fetchAlbums: () => dispatch(fetchAlbums()),
           fetchSongs: () => dispatch(fetchSongs()),
+          fetchUsers: () => dispatch(fetchUsers()),
           setPlaylist: (song) => dispatch(setPlaylist(song))
         }
       }

@@ -32,19 +32,23 @@ import {openSearchForm} from '../actionCreators'
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <AppBar position="static" style = {{backgroundColor: "pink"}}>
-        <Toolbar>
+        <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
           <Typography variant="h6" >
             Deezer's Teasers
           </Typography>
+            {props.signedIn ? 
             <Tabs aria-label="simple tabs example">
-            <Link to="/artists" ><Tab label="Artists" /></Link>
-            <Link to="/albums" ><Tab label="Albums" /></Link>
-            <Link to="/songs" ><Tab label="Songs" /></Link>
-            <Tab label="Search" onClick={() => props.openSearchForm()}/>
-            </Tabs>
-          <Button color="inherit">Login</Button>
+              <Link to="/artists" ><Tab label="Artists" /></Link>
+              <Link to="/albums" ><Tab label="Albums" /></Link>
+              <Link to="/songs" ><Tab label="Songs" /></Link>
+              <Tab label="Search" onClick={() => props.openSearchForm()}/>
+              </Tabs>
+          : null}
+          {/* <div style={{space: "90%"}}> */}
+            <Button color="inherit" >Login</Button> 
+          {/* </div> */}
         </Toolbar>
       </AppBar>
     </div>
@@ -53,7 +57,7 @@ import {openSearchForm} from '../actionCreators'
 
 function msp(state){
   return{
-    state
+    signedIn: state.signedIn
   }
 }
 

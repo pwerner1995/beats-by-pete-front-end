@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 // import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import {selectAlbum} from '../actionCreators'
+import {selectAlbum, openSearchForm} from '../actionCreators'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +28,12 @@ function Album(props) {
       return (
         <Grid item>
         <Link to={`/albums/${props.album.id}`} >
-        <Card className = {classes.card} onClick = {() => props.selectAlbum(props.album)}>
+        <Card className = {classes.card} onClick = {() => {
+                                      props.selectAlbum(props.album)
+                                      if(props.search){
+                                        props.openSearchForm()
+                                      }
+                                      }}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
@@ -68,12 +73,13 @@ function Album(props) {
 
   function msp(state){
     return {
-      state
+      search: state.search
     }
   }
 
   const mdp = {
-    selectAlbum
+    selectAlbum,
+    openSearchForm
   }
 
 

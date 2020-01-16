@@ -63,6 +63,41 @@ export const  fetchAlbums = () => {
 
 }
 
+export const  fetchUsers = () => {
+    
+    return (dispatch) => {
+        fetch("http://localhost:3000/api/v1/users",{
+            headers:{
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => dispatch({
+            type: "SET_USERS",
+            payload: {users: data}
+        }))
+    } 
+
+}
+
+
+
+export function SignInUser(){
+    return{
+        type: "SIGN_IN_USER"
+    }
+}
+
+export function SetUser(user){
+    return{
+        type: "SET_USER",
+        payload: user
+    }
+}
+
 export function showPlayer(){
     return{
         type: "SHOW_PLAYER"

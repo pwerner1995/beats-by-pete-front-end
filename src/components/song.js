@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-import {selectSong} from '../actionCreators'
+import {selectSong, openSearchForm} from '../actionCreators'
 import { Link } from 'react-router-dom';
 
 
@@ -35,7 +35,12 @@ function Song(props) {
       return (
         <Grid item>
         <Link to={`/songs/${props.song.id}`}>
-        <Card className = {classes.card} margin="10px" onClick={()=> props.selectSong(props.song)}>
+        <Card className = {classes.card} margin="10px" onClick={()=> {
+                                          props.selectSong(props.song)
+                                          if(props.search){
+                                            props.openSearchForm()
+                                          }
+                                          }}>
           <CardActionArea>
             <CardMedia
                 className = {classes.media}
@@ -74,11 +79,14 @@ function Song(props) {
   }
 
   function msp(state){
-      return state
+      return {
+        search: state.search
+      }
   }
 
   const mdp ={
-      selectSong
+      selectSong,
+      openSearchForm
   }
 
 export default connect(msp, mdp)(Song)

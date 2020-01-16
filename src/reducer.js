@@ -20,7 +20,10 @@ const defaultState = {
     albumSearchResults: [],
     songSearchResults: [],
     player: false,
-    playing: false
+    playing: false,
+    signedIn: false,
+    users: [],
+    user: {}
 
 
 }
@@ -33,6 +36,10 @@ function reducer(prevState = defaultState, action){
       return {...prevState, albums: [...prevState.albums, action.payload.albums]}
     case "SET_SONGS":
       return {...prevState, songs: [...prevState.songs, action.payload.songs]}
+    case "SET_USERS":
+      return {...prevState, users: [...prevState.users, action.payload.users]}
+    case "SET_USER":
+      return {...prevState, user: action.payload.user}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [...prevState.playlist, action.payload.playlist]} 
     case "SET_PLAYING_BOOL":
@@ -61,6 +68,8 @@ function reducer(prevState = defaultState, action){
         return {...prevState, albumSearchResults: [] }
     case "RESET_SONG_SEARCH":
         return {...prevState, songSearchResults: [] }
+    case "SIGN_IN_USER":
+        return {...prevState, signedIn: true }
     default: 
       return prevState
   }
