@@ -21,7 +21,7 @@ const defaultState = {
     songSearchResults: [],
     player: false,
     playing: false,
-    signedIn: false,
+    signedIn: true,
     users: [],
     user: {}
 

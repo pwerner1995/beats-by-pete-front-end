@@ -116,11 +116,11 @@ class SearchResultsContainer extends React.Component {
             <Grid container flexGrow={1} >
             <div className="search-container">
                 
-                {this.props.artistSearchResults.length > 0 ? <div>Artists: {this.renderArtists()}</div> : null}
+                {this.props.artistSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Artists: {this.renderArtists()}</div> : null}
                  
-                {this.props.albumSearchResults.length > 0 ? <div>Albums: {this.renderAlbums()}</div> : null}
+                {this.props.albumSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Albums: {this.renderAlbums()}</div> : null}
                 
-                {this.props.songSearchResults.length > 0 ? <div>Songs: {this.renderSongs()}</div> : null}
+                {this.props.songSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Songs: {this.renderSongs()}</div> : null}
                 
 
 

@@ -17,7 +17,7 @@ class ArtistContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="artist-container">
+            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%"}}>
                 <Switch>
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
                     <Route path="/artists" render={() => {

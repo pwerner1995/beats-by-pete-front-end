@@ -15,10 +15,10 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 120,
+        maxWidth: 240,
       },
       media: {
-        height: 120,
+        height: 240,
       },
 });
 function Song(props) {
@@ -31,9 +31,10 @@ function Song(props) {
     //          }
     //     })
     // }
-      console.log(props)
+      // console.log(props)
       return (
         <Grid item>
+          <div style={{display: 'flex', justifyContent: "center", margin: "1.5em"}}>
         <Link to={`/songs/${props.song.id}`}>
         <Card className = {classes.card} margin="10px" onClick={()=> {
                                           props.selectSong(props.song)
@@ -73,6 +74,7 @@ function Song(props) {
           </CardActions> */}
         </Card>
         </Link>
+        </div>
         </Grid>
       );
 

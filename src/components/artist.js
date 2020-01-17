@@ -17,10 +17,10 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 120,
+        maxWidth: 240,
       },
       media: {
-        height: 120,
+        height: 240,
       },
 });
 function Artist(props) {
@@ -36,6 +36,7 @@ function Artist(props) {
       // console.log(props)
       return (
         <Grid item>
+        <div style={{ margin: "1.5em"}}>
         <Link to ={`/artists/${props.artist.id}`}>
         <Card className = {classes.card} onClick={()=> {
                                                     console.log(props)
@@ -76,6 +77,7 @@ function Artist(props) {
           </CardActions> */}
         </Card>
         </Link>
+        </div>
         </Grid>
       );
 

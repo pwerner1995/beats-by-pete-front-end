@@ -17,7 +17,7 @@ class AlbumContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="album-container">
+            <div className="album-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%"}}>
                 <Switch>
                     <Route path="/albums/:id" render={(routerProps) => {
                             // console.log("test")
