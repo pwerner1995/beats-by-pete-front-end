@@ -16,10 +16,10 @@ import {selectArtist} from '../actionCreators'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 120,
+        maxWidth: 240,
       },
       media: {
-        height: 120,
+        height: 240,
       },
 });
 function Artist(props) {
@@ -46,7 +46,7 @@ function Artist(props) {
 
         return (
           <Grid item>
-          <Card className = {classes.card} >
+          <Card className = {classes.card} style={{marginBottom: "10%", marginTop: "5%", marginLeft: "5%"}} >
             <CardActionArea>
               <CardMedia
                   className = {classes.media}
@@ -78,7 +78,7 @@ function Artist(props) {
               </Button>
             </CardActions> */}
           </Card>
-          <div>
+          <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%"}}> 
             {albums.map(album => <Album album ={album}/>)}
           </div>
           </Grid>

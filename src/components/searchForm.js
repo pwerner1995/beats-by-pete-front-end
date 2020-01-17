@@ -59,11 +59,10 @@ function SearchForm(props) {
         // const state =  store.getState()
         // console.log("state: ",state)
         let songs = []
-        let artists = []
-        let albums = []
+        console.log("Deezer", results)
         results.data.forEach((song) => {
-            console.log(artists)
-            if(props.songs[0].filter(s => s.title.toUpperCase().includes(song.title.toUpperCase())).length < 1 ){
+            // console.log(artists)
+            
                 songs.push(song)
                 // if(props.artists[0].filter(a => a.name.toUpperCase().includes(song.artist.name.toUpperCase())).length < 1 ){
                 //     artists.push(song.artist)
@@ -72,7 +71,6 @@ function SearchForm(props) {
                     
                 //     albums.push({album: song.album, artist: song.artist.name})
                 // }
-            }
         })
         props.postSearch(songs)
        
@@ -98,9 +96,9 @@ function SearchForm(props) {
         let artistsArray = []
         let albumsArray = []
         let songsArray = []
-        artistsArray = props.artists[0].filter(a => a.name.toUpperCase().includes(artist))
-        albumsArray = props.albums[0].filter(a => a.artist_name.toUpperCase().includes(artist))
-        songsArray = props.songs[0].filter(a => a.artist_name.toUpperCase().includes(artist))
+        // artistsArray = props.artists[0].filter(a => a.name.toUpperCase().includes(artist))
+        // albumsArray = props.albums[0].filter(a => a.artist_name.toUpperCase().includes(artist))
+        // songsArray = props.songs[0].filter(a => a.artist_name.toUpperCase().includes(artist))
 
         if(album.length > 2){
             albumsArray = [...albumsArray, ...props.albums[0].filter(a => a.title.toUpperCase().includes(album))]
@@ -111,9 +109,9 @@ function SearchForm(props) {
             songsArray = [...songsArray, props.songs[0].filter(a => a.title.toUpperCase().includes(song))]
         }
         // console.log("filter aristArray", aristArray)
-        props.setArtistSearchResults(artistsArray)
-        props.setAlbumSearchResults(albumsArray)
-        props.setSongSearchResults(songsArray)
+        // props.setArtistSearchResults(artistsArray)
+        // props.setAlbumSearchResults(albumsArray)
+        // props.setSongSearchResults(songsArray)
         
         
             fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchString}`, {

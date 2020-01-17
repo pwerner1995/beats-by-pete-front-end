@@ -56,12 +56,14 @@ function reducer(prevState = defaultState, action){
         return {...prevState, selectedSong: action.payload}
     case "OPEN_SEARCH":
         return {...prevState, search: !prevState.search}
+    case "CLOSE_SEARCH":
+        return {...prevState, search: false}
     case "SET_ARTIST_RESULTS":
-        return {...prevState, artistSearchResults: [...prevState.artistSearchResults, action.payload.artistSearchResults] }
+        return {...prevState, artistSearchResults: [...action.payload.artistSearchResults] }
     case "SET_ALBUM_RESULTS":
-        return {...prevState, albumSearchResults: [...prevState.albumSearchResults, action.payload.albumSearchResults] }
+        return {...prevState, albumSearchResults: [...action.payload.albumSearchResults] }
     case "SET_SONG_RESULTS":
-        return {...prevState, songSearchResults: [...prevState.songSearchResults, action.payload.songSearchResults] }
+        return {...prevState, songSearchResults: [...action.payload.songSearchResults] }
     case "RESET_ARTIST_SEARCH":
         return {...prevState, artistSearchResults: [] }
     case "RESET_ALBUM_SEARCH":

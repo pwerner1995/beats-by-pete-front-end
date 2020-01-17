@@ -186,6 +186,12 @@ export function openSearchForm (){
     }
 }
 
+export function closeSearchForm (){
+    return {
+        type: "CLOSE_SEARCH"
+    }
+}
+
 export function setArtistSearchResults(results){
     return{
         type: "SET_ARTIST_RESULTS",

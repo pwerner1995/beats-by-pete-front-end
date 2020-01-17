@@ -36,11 +36,9 @@ class SearchResultsContainer extends React.Component {
         }else{
             // debugger
             showArtists = this.props.artistSearchResults
-            return showArtists.map((array) => {
-                return array.map((artist) => {
+            return showArtists.map((artist) => {
                     return <Artist artist = {artist} />
                 })
-            })
         }
     }
 
@@ -64,11 +62,9 @@ class SearchResultsContainer extends React.Component {
             })
         }else{
             showAlbums = this.props.albumSearchResults
-            return showAlbums.map((array) =>{
-                return array.map((album) => {
+            return showAlbums.map((album) => {
                     return <Album album = {album} />
                 })
-            })
         }
     }
 
@@ -95,11 +91,9 @@ class SearchResultsContainer extends React.Component {
         }else{
             // console.log()
             showSongs = this.props.songSearchResults
-            return showSongs.map((array)=>{
-                return array.map((song) => {
+            return showSongs.map((song) => {
                     return <Song song = {song} />
                 })
-            })
         }
     }
 

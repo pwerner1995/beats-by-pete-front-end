@@ -14,10 +14,10 @@ import SongPlayCard from './songPlayCard'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 120,
+        maxWidth: 240,
       },
       media: {
-        height: 120,
+        height: 240,
       },
 });
 function SongPage(props) {

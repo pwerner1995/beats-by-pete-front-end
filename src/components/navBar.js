@@ -10,7 +10,7 @@ import Tab from '@material-ui/core/Tab';
 // import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {openSearchForm} from '../actionCreators'
+import {openSearchForm, closeSearchForm} from '../actionCreators'
 
 
 
@@ -40,9 +40,9 @@ import {openSearchForm} from '../actionCreators'
           </Typography>
             {props.signedIn ? 
             <Tabs aria-label="simple tabs example">
-              <Link to="/artists" ><Tab label="Artists" /></Link>
-              <Link to="/albums" ><Tab label="Albums" /></Link>
-              <Link to="/songs" ><Tab label="Songs" /></Link>
+              <Link to="/artists" ><Tab label="Artists" onClick={() => props.closeSearchForm()} /></Link>
+              <Link to="/albums" ><Tab label="Albums" onClick={() => props.closeSearchForm()} /></Link>
+              <Link to="/songs" ><Tab label="Songs" onClick={() => props.closeSearchForm()} /></Link>
               <Tab label="Search" onClick={() => props.openSearchForm()}/>
               </Tabs>
           : null}
@@ -62,7 +62,8 @@ function msp(state){
 }
 
 const mdp ={
-  openSearchForm
+  openSearchForm,
+  closeSearchForm
 }
      
 export default connect(msp, mdp)(NavBar)
