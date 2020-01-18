@@ -31,17 +31,17 @@ const defaultState = {
 function reducer(prevState = defaultState, action){
   switch(action.type){
     case "SET_ARTISTS":
-      return {...prevState, artists: [...prevState.artists, [...action.payload.artists]]}
+      return {...prevState, artists: action.payload.artists}
     case "SET_ALBUMS":
-      return {...prevState, albums: [...prevState.albums, action.payload.albums]}
+      return {...prevState, albums: action.payload.albums}
     case "SET_SONGS":
-      return {...prevState, songs: [...prevState.songs, action.payload.songs]}
+      return {...prevState, songs: action.payload.songs}
     case "SET_USERS":
       return {...prevState, users: [...prevState.users, action.payload.users]}
     case "SET_USER":
       return {...prevState, user: action.payload.user}
     case "SET_PLAYLIST":
-        return {...prevState, playlist: [...prevState.playlist, action.payload.playlist]} 
+        return {...prevState, playlist: action.payload.playlist} 
     case "SET_PLAYING_BOOL":
         return {...prevState, playing: !prevState.playing }
     case "SHOW_PLAYER":

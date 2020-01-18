@@ -36,12 +36,19 @@ function Artist(props) {
     let albums = []
     let artist ={}
     if(!props.artist.id && props.albums[0] && props.artists[0]){
-        artist = props.artists[0].find(artist => artist.id === parseInt(props.match.params.id))
+        artist = props.artists.find(artist => artist.id === parseInt(props.match.params.id))
         props.selectArtist(artist)
     }
     if(props.albums[0]){
-        albums = props.albums[0].filter(album => album.artist_id === props.artist.id)
-    }
+        albums = props.albums.filter(album => album.artist_id === props.artist.id)
+        // if(props.albums[1]){
+        //   props.albums.forEach((arr)=>{
+        //     albums = [...albums, arr.filter(album => album.artist_id ===props.artist.id)]
+        //     console.log(albums)
+        //   })
+          
+        }
+    
     if(props.artist){
 
         return (

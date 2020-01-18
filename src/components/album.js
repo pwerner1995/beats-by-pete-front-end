@@ -5,12 +5,13 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {selectAlbum, openSearchForm} from '../actionCreators'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReviewForm from './reviewForm'
 
 
 const useStyles = makeStyles({
@@ -24,6 +25,12 @@ const useStyles = makeStyles({
 function Album(props) {
     const classes = useStyles();
     
+
+    const [openReviewForm, setOpenReviewForm] = React.useState(false)
+
+    const openForm = () =>{
+      setOpenReviewForm({openReviewForm: true})
+    }
 
       return (
         <Grid item>
@@ -57,6 +64,9 @@ function Album(props) {
                 } */}
             </CardContent>
           </CardActionArea>
+          {openReviewForm ? <ReviewForm /> : <Button type ="submit" variant="outlined" style={{color: "pink"}} onClick={()=> openForm()} >
+            Review
+            </Button> }
           {/* <CardActions>
             <Button size="small" color="primary">
               Share

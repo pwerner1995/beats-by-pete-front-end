@@ -101,12 +101,12 @@ function SearchForm(props) {
         // songsArray = props.songs[0].filter(a => a.artist_name.toUpperCase().includes(artist))
 
         if(album.length > 2){
-            albumsArray = [...albumsArray, ...props.albums[0].filter(a => a.title.toUpperCase().includes(album))]
-            songsArray = [...songsArray, ...props.songs[0].filter(a => a.album_name.toUpperCase().includes(album))]
+            albumsArray = [...albumsArray, ...props.albums.filter(a => a.title.toUpperCase().includes(album))]
+            songsArray = [...songsArray, ...props.songs.filter(a => a.album_name.toUpperCase().includes(album))]
         }
         
         if(song.length > 2){
-            songsArray = [...songsArray, props.songs[0].filter(a => a.title.toUpperCase().includes(song))]
+            songsArray = [...songsArray, props.songs.filter(a => a.title.toUpperCase().includes(song))]
         }
         // console.log("filter aristArray", aristArray)
         // props.setArtistSearchResults(artistsArray)

@@ -31,13 +31,13 @@ function AlbumPage(props) {
     if(!props.album.id && props.albums[0]){
         let album = {} 
         console.log(album)
-        album = props.albums[0].find(album => album.id === parseInt(props.match.params.id))
+        album = props.albums.find(album => album.id === parseInt(props.match.params.id))
         props.selectAlbum(album)
 
     }
     let albumSongs = []
     if(props.songs[0]){
-        albumSongs = props.songs[0].filter((song) => {
+        albumSongs = props.songs.filter((song) => {
             return song.album_id === props.album.id
         })
     }

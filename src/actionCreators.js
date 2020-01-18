@@ -266,32 +266,32 @@ export const postSearch = (songs) => {
                 console.log("response", resp)
                 dispatch({
                     type: "SET_ARTISTS",
-                    payload: {artists: [...resp.artists]}
+                    payload: {artists: resp.artists}
                 })
                 dispatch({
                     type: "SET_ARTIST_RESULTS",
                     payload: {
-                        artistSearchResults: [...resp.artists]
+                        artistSearchResults: [...resp.searchArtists]
                     }
                 })
                 dispatch({
                     type: "SET_ALBUMS",
-                    payload: {albums: [...resp.albums]}
+                    payload: {albums: resp.albums}
                 })
                 dispatch({
                     type: "SET_ALBUM_RESULTS",
                     payload: {
-                        albumSearchResults: [...resp.albums]
+                        albumSearchResults: [...resp.searchAlbums]
                     }
                 })
                 dispatch({
                     type: "SET_SONGS",
-                    payload: {songs: [...resp.songs]}
+                    payload: {songs: resp.songs}
                 })
                 dispatch({
                     type: "SET_SONG_RESULTS",
                     payload: {
-                        songSearchResults: [...resp.songs]
+                        songSearchResults: [...resp.searchSongs]
                     }
                 })
                 // setArtistSearchResults([...resp])
