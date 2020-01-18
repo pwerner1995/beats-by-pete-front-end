@@ -60,18 +60,20 @@ function SearchForm(props) {
         // console.log("state: ",state)
         let songs = []
         console.log("Deezer", results)
-        results.data.forEach((song) => {
-            // console.log(artists)
-            
-                songs.push(song)
-                // if(props.artists[0].filter(a => a.name.toUpperCase().includes(song.artist.name.toUpperCase())).length < 1 ){
-                //     artists.push(song.artist)
-                // }
-                // if(props.albums[0].filter(a => a.title.toUpperCase().includes(song.album.title.toUpperCase())).length < 1 ){
-                    
-                //     albums.push({album: song.album, artist: song.artist.name})
-                // }
-        })
+        if(results.data.length > 0){
+            results.data.forEach((song) => {
+                // console.log(artists)
+                
+                    songs.push(song)
+                    // if(props.artists[0].filter(a => a.name.toUpperCase().includes(song.artist.name.toUpperCase())).length < 1 ){
+                    //     artists.push(song.artist)
+                    // }
+                    // if(props.albums[0].filter(a => a.title.toUpperCase().includes(song.album.title.toUpperCase())).length < 1 ){
+                        
+                    //     albums.push({album: song.album, artist: song.artist.name})
+                    // }
+            })
+        }
         props.postSearch(songs)
        
         
@@ -141,7 +143,7 @@ function SearchForm(props) {
 
 
     return (
-    <form className={classes.formRoot} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
+    <form className={classes.formRoot} style={{marginTop:"10%"}} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
         <div>
         <TextField
             onChange = {(e) => handleArtistChange(e)}

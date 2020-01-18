@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Artist from '../components/artist'
 import Song from '../components/song'
+import Typography from '@material-ui/core/Typography';
+
 
 
 // import Album from '../components/album'
@@ -108,13 +110,40 @@ class SearchResultsContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="search-container">
+            <div className="search-container" style={{marginTop:"5%"}}>
                 
-                {this.props.artistSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Artists: {this.renderArtists()}</div> : null}
+                {this.props.artistSearchResults.length > 0 ? 
+                    <div>
+                    <Typography gutterBottom variant="h6" component="h6">
+                        Artists
+                    </Typography> 
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    {this.renderArtists()}
+                    </div> 
+                    </div> 
+                    : null}
                  
-                {this.props.albumSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Albums: {this.renderAlbums()}</div> : null}
+                {this.props.albumSearchResults.length > 0 ? 
+                    <div>
+                    <Typography gutterBottom variant="h6" component="h6">
+                        Albums
+                    </Typography> 
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    {this.renderAlbums()}
+                    </div>
+                    </div> 
+                    : null}
                 
-                {this.props.songSearchResults.length > 0 ? <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>Songs: {this.renderSongs()}</div> : null}
+                {this.props.songSearchResults.length > 0 ? 
+                    <div>
+                    <Typography gutterBottom variant="h6" component="h6">
+                        Songs
+                    </Typography> 
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    {this.renderSongs()}
+                    </div> 
+                    </div> 
+                    : null}
                 
 
 

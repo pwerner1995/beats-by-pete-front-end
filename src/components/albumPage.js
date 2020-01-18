@@ -46,7 +46,7 @@ function AlbumPage(props) {
 
         return (
             <Grid item>
-            <Card className = {classes.card} style={{marginBottom: "10%", marginTop: "5%", marginLeft: "5%"}} >
+            <Card className = {classes.card} style={{marginBottom: "10%", marginTop: "5%", marginLeft: "5%", marginTop:"5%"}} >
               <CardActionArea>
                 <CardMedia
                     className = {classes.media}

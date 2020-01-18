@@ -62,8 +62,8 @@ function SongPlayCard(props) {
   console.log(props.song.title)
 
   return (
-    <Card className={classes.card}>
-      <div className={classes.details}>
+    <Card className={classes.card} style={{marginTop:"5%"}}>
+      <div className={classes.details} >
         <CardContent className={classes.content}>
         <ThemeProvider >
           <Typography component="subtitle1" variant="subtitle1">

@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -8,92 +10,48 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: 200,
     },
-  },
+    '& .outlined-number':{
+      width: 30,
+    },
+    },
+  
 }));
 
-export default function ReviewForm() {
+export default function ReviewForm(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('Controlled');
 
   const handleChange = event => {
     setValue(event.target.value);
   }
+  console.log("PROPS",props)
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField
-          id="standard-multiline-flexible"
-          label="Multiline"
-          multiline
-          rowsMax="4"
-          value={value}
-          onChange={handleChange}
-        />
-        <TextField
-          id="standard-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
-          multiline
-        />
-        <TextField
-          id="standard-multiline-static"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-        />
-      </div>
-      <div>
-        <TextField
-          id="filled-multiline-flexible"
-          label="Multiline"
-          multiline
-          rowsMax="4"
-          value={value}
-          onChange={handleChange}
-          variant="filled"
-        />
-        <TextField
-          id="filled-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
-          multiline
-          variant="filled"
-        />
-        <TextField
-          id="filled-multiline-static"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-          variant="filled"
-        />
-      </div>
-      <div>
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Multiline"
-          multiline
-          rowsMax="4"
-          value={value}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
-          multiline
+      <TextField
+          // className = {classes.root}
+          id="outlined-number"
+          label="Rating (out of 10)"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
           variant="outlined"
         />
         <TextField
           id="outlined-multiline-static"
-          label="Multiline"
+          label="Review"
           multiline
-          rows="4"
-          defaultValue="Default Value"
+          rows="2"
+          defaultValue=""
           variant="outlined"
         />
+        <Button type ="submit" variant="outlined" style={{color: "pink"}} >
+            Submit
+        </Button> 
+        <Button variant="outlined" style={{color: "pink"}} onClick={()=> props.closeForm()}>
+            Close
+        </Button> 
       </div>
     </form>
   );

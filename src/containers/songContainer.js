@@ -37,19 +37,20 @@ class SongContainer extends React.Component {
               <CssBaseline />
               <Grid container flexGrow={1} >
                 {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
+                <div className="album-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
                 <Switch>
-                    <Route path="/songs/:id" render={()=> <SongPage />}/>
+                    <Route path="/songs/:id" render={(routerProps)=> <SongPage {...routerProps}/>}/>
                     <Route exact path="/songs" render={() => {
                         if(this.props.songs.length > 0) {
-                            return (this.props.songs.map((array) => {
-                                return array.map(song => {    
-                                    console.log("song container",song)
+                            return (this.props.songs.map(song => {    
+                                    // console.log("song container",song)
                                     return <Song song = {song}/>
                                 })
-                            }))
+                            )
                         }
                     }}/>
                 </Switch>
+                </div>
               </Grid>
             </React.Fragment>
           );

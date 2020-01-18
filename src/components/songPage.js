@@ -30,6 +30,13 @@ function SongPage(props) {
     //          }
     //     })
     // }
+    if(!props.song.id && props.songs[0]){
+      let song = {} 
+      console.log(song)
+      song = props.songs.find(song => song.id === parseInt(props.match.params.id))
+      props.selectSong(song)
+
+  }
       console.log(props.song)
       return (
         <SongPlayCard song = {props.song}/>
@@ -74,8 +81,13 @@ function SongPage(props) {
   function msp(state){
     console.log(state)  
     return {
-          song: state.selectedSong
+          song: state.selectedSong,
+          songs: state.songs
       }
   }
 
-export default connect(msp)(SongPage)
+  const mdp ={
+    selectSong
+  }
+
+export default connect(msp, mdp)(SongPage)

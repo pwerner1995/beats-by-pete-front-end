@@ -41,7 +41,7 @@ function reducer(prevState = defaultState, action){
     case "SET_USER":
       return {...prevState, user: action.payload.user}
     case "SET_PLAYLIST":
-        return {...prevState, playlist: action.payload.playlist} 
+        return {...prevState, playlist: [action.payload.playlist]} 
     case "SET_PLAYING_BOOL":
         return {...prevState, playing: !prevState.playing }
     case "SHOW_PLAYER":

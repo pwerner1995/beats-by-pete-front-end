@@ -33,7 +33,7 @@ import {openSearchForm, closeSearchForm} from '../actionCreators'
 
   return (
     <div className={classes.root} >
-      <AppBar position="static" style = {{backgroundColor: "pink"}}>
+      <AppBar position="fixed" style = {{backgroundColor: "pink"}}>
         <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
           <Typography variant="h6" >
             Deezer's Teasers

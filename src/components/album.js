@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
+import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -29,20 +29,27 @@ function Album(props) {
     const [openReviewForm, setOpenReviewForm] = React.useState(false)
 
     const openForm = () =>{
-      setOpenReviewForm({openReviewForm: true})
+      setOpenReviewForm(true)
+    }
+    
+    const closeForm = () =>{
+      setOpenReviewForm(false)
+      console.log("review bool", openReviewForm)
     }
 
+
       return (
-        <Grid item>
         <div style={{margin: "1.5em"}}>
-        <Link to={`/albums/${props.album.id}`} >
-        <Card className = {classes.card} onClick = {() => {
-                                      props.selectAlbum(props.album)
-                                      if(props.search){
-                                        props.openSearchForm()
-                                      }
-                                      }}>
-          <CardActionArea>
+        <Grid item>
+        <Card className = {classes.card} >
+          <Link to={`/albums/${props.album.id}`} >
+          <CardActionArea onClick = {() => {
+            props.selectAlbum(props.album)
+                  if(props.search){
+                    props.openSearchForm()
+                  }
+                  }}>
+          
             <CardMedia
                 className = {classes.media}
                 component="img"
@@ -50,35 +57,28 @@ function Album(props) {
                 width="345"
                 image= {props.album.cover}
                 title= {props.album.title}
+                
             />
+          </CardActionArea>
+          </Link>
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
                 {props.album.title} by {props.album.artist_name}
               </Typography>
-                {/* {this.state.albums.length < 0 ? this.albums() : null}
-                {this.state.albums.forEach(album => {
-                    return(<Typography variant="body2" color="textSecondary" component="p">
-                        album
-                    </Typography>)
-                })
-                } */}
+            
             </CardContent>
-          </CardActionArea>
-          {openReviewForm ? <ReviewForm /> : <Button type ="submit" variant="outlined" style={{color: "pink"}} onClick={()=> openForm()} >
+          
+          
+          
+          <div  style = {{display: "flex", justifyContent: "space-around",marginBottom:"3%"}}>
+          {openReviewForm ? <ReviewForm closeForm ={closeForm}/> : <Button onClick={()=> openForm()} variant="outlined" style={{color: "pink"}}  >
             Review
             </Button> }
-          {/* <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions> */}
+            </div>
+          
         </Card>
-        </Link>
-        </div>
         </Grid>
+        </div>
       );
 
   }

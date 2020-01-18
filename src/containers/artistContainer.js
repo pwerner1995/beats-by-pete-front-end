@@ -17,18 +17,16 @@ class ArtistContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%"}}>
+            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
                 <Switch>
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
                     <Route path="/artists" render={() => {
                         if(this.props.artists.length > 0) {
-                            return (this.props.artists.map((array) =>{
-                                console.log("artists cont", array)
-                                return array.map(artist => {    
+                            return (this.props.artists.map(artist => {    
                                     // console.log("artist container",artist)
                                     return <Artist artist = {artist} albums = {this.props.albums}/>
                                 })
-                            }))
+                            )
                         }
                     }}/>
                 </Switch>

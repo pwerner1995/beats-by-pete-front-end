@@ -58,7 +58,7 @@ class App extends React.Component{
                     
 
 
-                    {this.props.player ? <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} /> : null }
+                    {this.props.player ? <Playlist tracks={this.props.playlist.length > 0 ? this.props.playlist : [{img: "", name: "", desc: "", src: ""}]} opts={this.props.playlistOverideStylingOpts} style={{marginTop:"5%"}}/> : null }
                     
             </div>
             );
