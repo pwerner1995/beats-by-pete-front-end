@@ -10,10 +10,17 @@ export const  fetchArtists = () => {
             }
         })
         .then(resp => resp.json())
-        .then(data => dispatch({
-            type: "SET_ARTISTS",
-            payload: {artists: data}
-        }))
+        .then(data => {
+            dispatch({
+                type: "SET_ARTISTS",
+                payload: {artists: data.artists}
+            })
+            dispatch({
+                type: "SET_TOP_ARTISTS",
+                payload: {topRatedArtists: data.topRatedArtists}
+            })
+        
+        })
     }
     
     
@@ -55,9 +62,35 @@ export const  fetchAlbums = () => {
             }
         })
         .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            dispatch({
+                type: "SET_ALBUMS",
+                payload: {albums: data.albums}
+            })
+            dispatch({
+                type: "SET_TOP_ALBUMS",
+                payload: {topRatedAlbums: data.topRatedAlbums}
+            })
+        })
+    } 
+
+}
+export const  fetchReviews = () => {
+    
+    return (dispatch) => {
+        fetch("http://localhost:3000/api/v1/reviews",{
+            headers:{
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        })
+        .then(resp => resp.json())
         .then(data => dispatch({
-            type: "SET_ALBUMS",
-            payload: {albums: data}
+            type: "SET_REVIEWS",
+            payload: {reviews: data}
         }))
     } 
 
@@ -75,10 +108,17 @@ export const  fetchUsers = () => {
             }
         })
         .then(resp => resp.json())
-        .then(data => dispatch({
+        .then(data => {
+            // console.log(data[0])
+            dispatch({
+                type:"SET_USER", //temporary default user for testing
+                payload: {user: data[0]}
+            })
+            dispatch({
             type: "SET_USERS",
             payload: {users: data}
-        }))
+            })
+        })
     } 
 
 }
@@ -234,6 +274,51 @@ export function resetAlbumSearchResults(){
 export function resetSongSearchResults(){
     return{
         type: "RESET_SONG_SEARCH"
+    }
+}
+
+export const postNewReview = (review, user) =>{
+    console.log(review, user)
+    return (dispatch) =>{
+        fetch(`http://localhost:3000/api/v1/users/${user.id}/reviews`,{method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:3000",
+                    'Access-Control-Allow-Credentials': 'true'
+                },
+                body: JSON.stringify({
+                    review
+                })
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                if(data.error.length > 0){
+                    alert(data.error)
+                }else{
+                    dispatch({
+                        type: "SET_REVIEWS",
+                        payload: {reviews: data.reviews}
+                    })
+                    dispatch({
+                        type: "SET_TOP_ARTISTS",
+                        payload: {topRatedArtists: data.topRatedArtists}
+                    })
+                    dispatch({
+                        type: "SET_TOP_ALBUMS",
+                        payload: {topRatedAlbums: data.topRatedAlbums}
+                    })
+                    dispatch({
+                        type: "SET_ARTISTS",
+                        payload: {artists: data.artists}
+                    })
+                    dispatch({
+                        type: "SET_ALBUMS",
+                        payload: {albums: data.albums}
+                    })
+                }
+                })
     }
 }
 

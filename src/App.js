@@ -25,6 +25,7 @@ class App extends React.Component{
         this.props.fetchAlbums()
         this.props.fetchSongs()
         this.props.fetchUsers()
+        // this.props.SetUser(this.props.users[0])
         // console.log("Testing songs:",this.props.songs)
         
     }
@@ -76,18 +77,26 @@ class App extends React.Component{
             search: state.search,
             searchResults: state.searchResults,
             player: state.player,
-            signedIn: state.signedIn
+            signedIn: state.signedIn,
+            users: state.users
         }
     }
 
-    const mdp = dispatch => {
-        return {
-          fetchArtists: () => dispatch(fetchArtists()),
-          fetchAlbums: () => dispatch(fetchAlbums()),
-          fetchSongs: () => dispatch(fetchSongs()),
-          fetchUsers: () => dispatch(fetchUsers()),
-          setPlaylist: (song) => dispatch(setPlaylist(song))
-        }
+    const mdp = {
+        // return {
+        //   fetchArtists: () => dispatch(fetchArtists()),
+        //   fetchAlbums: () => dispatch(fetchAlbums()),
+        //   fetchSongs: () => dispatch(fetchSongs()),
+        //   fetchUsers: () => dispatch(fetchUsers()),
+        //   setPlaylist: (song) => dispatch(setPlaylist(song)),
+        //   setUser: () => dispatch(setUser())
+        // }
+        
+          fetchArtists,
+          fetchAlbums,
+          fetchSongs,
+          fetchUsers,
+          setPlaylist
       }
 
 export default connect(msp, mdp)(App);

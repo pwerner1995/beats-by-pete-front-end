@@ -64,6 +64,7 @@ function Album(props) {
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
                 {props.album.title} by {props.album.artist_name}
+                Average Rating: {props.album.avg_rating}
               </Typography>
             
             </CardContent>
@@ -71,7 +72,7 @@ function Album(props) {
           
           
           <div  style = {{display: "flex", justifyContent: "space-around",marginBottom:"3%"}}>
-          {openReviewForm ? <ReviewForm closeForm ={closeForm}/> : <Button onClick={()=> openForm()} variant="outlined" style={{color: "pink"}}  >
+          {openReviewForm ? <ReviewForm closeForm ={closeForm} album ={props.album}/> : <Button onClick={()=> openForm()} variant="outlined" style={{color: "pink"}}  >
             Review
             </Button> }
             </div>

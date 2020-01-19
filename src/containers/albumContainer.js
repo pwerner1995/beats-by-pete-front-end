@@ -24,8 +24,8 @@ class AlbumContainer extends React.Component {
                             return <AlbumPage  {...routerProps}/>
                             }}/>        
                     <Route exact path="/albums" render={() => {
-                        if(this.props.albums.length > 0) {
-                            return (this.props.albums.map(album => {    
+                        if(this.props.topRatedAlbums.length > 0) {
+                            return (this.props.topRatedAlbums.map(album => {    
                                     // console.log("album container",album)
                                     return <Album album = {album}/>
                                 })
@@ -49,7 +49,8 @@ class AlbumContainer extends React.Component {
 
 const msp = state =>{
     return{
-        albums: state.albums
+        albums: state.albums,
+        topRatedAlbums: state.topRatedAlbums
     }
 }
 

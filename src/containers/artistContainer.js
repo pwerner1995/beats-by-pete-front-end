@@ -21,8 +21,8 @@ class ArtistContainer extends React.Component {
                 <Switch>
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
                     <Route path="/artists" render={() => {
-                        if(this.props.artists.length > 0) {
-                            return (this.props.artists.map(artist => {    
+                        if(this.props.topRatedArtists.length > 0) {
+                            return (this.props.topRatedArtists.map(artist => {    
                                     // console.log("artist container",artist)
                                     return <Artist artist = {artist} albums = {this.props.albums}/>
                                 })
@@ -46,7 +46,8 @@ class ArtistContainer extends React.Component {
 const msp = state =>{
     return{
         artists: state.artists,
-        albums: state.albums
+        albums: state.albums,
+        topRatedArtists: state.topRatedArtists
     }
 }
 

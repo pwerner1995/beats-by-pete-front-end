@@ -23,7 +23,10 @@ const defaultState = {
     playing: false,
     signedIn: true,
     users: [],
-    user: {}
+    user: {},
+    reviews: [],
+    topRatedAlbums: [],
+    topRatedArtists: []
 
 
 }
@@ -34,11 +37,18 @@ function reducer(prevState = defaultState, action){
       return {...prevState, artists: action.payload.artists}
     case "SET_ALBUMS":
       return {...prevState, albums: action.payload.albums}
+    case "SET_TOP_ARTISTS":
+      return {...prevState, topRatedArtists: action.payload.topRatedArtists}
+    case "SET_TOP_ALBUMS":
+      return {...prevState, topRatedAlbums: action.payload.topRatedAlbums}
     case "SET_SONGS":
       return {...prevState, songs: action.payload.songs}
+    case "SET_REVIEWS":
+      return {...prevState, songs: action.payload.reviews}
     case "SET_USERS":
-      return {...prevState, users: [...prevState.users, action.payload.users]}
+      return {...prevState, users: action.payload.users}
     case "SET_USER":
+        // console.log(action.payload.user)
       return {...prevState, user: action.payload.user}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [action.payload.playlist]} 
