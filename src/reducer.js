@@ -21,12 +21,15 @@ const defaultState = {
     songSearchResults: [],
     player: false,
     playing: false,
-    signedIn: true,
+    signedIn: false,
     users: [],
     user: {},
     reviews: [],
     topRatedAlbums: [],
-    topRatedArtists: []
+    topRatedArtists: [],
+    userFavs: {},
+    recentRevs: [],
+    signUp: false
 
 
 }
@@ -45,11 +48,17 @@ function reducer(prevState = defaultState, action){
       return {...prevState, songs: action.payload.songs}
     case "SET_REVIEWS":
       return {...prevState, songs: action.payload.reviews}
-    case "SET_USERS":
-      return {...prevState, users: action.payload.users}
     case "SET_USER":
         // console.log(action.payload.user)
-      return {...prevState, user: action.payload.user}
+      return {...prevState, user: action.payload}
+    case "SET_USERS":
+      return {...prevState, users: action.payload.users}
+    case "SET_USER_FAVS":
+        // console.log(action.payload.user)
+      return {...prevState, userFavs: action.payload}
+    case "SET_USER_REVIEWS":
+        // console.log(action.payload.recent_reviews)
+      return {...prevState, recentRevs: action.payload}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [action.payload.playlist]} 
     case "SET_PLAYING_BOOL":
@@ -69,9 +78,9 @@ function reducer(prevState = defaultState, action){
     case "CLOSE_SEARCH":
         return {...prevState, search: false}
     case "SET_ARTIST_RESULTS":
-        return {...prevState, artistSearchResults: [...action.payload.artistSearchResults] }
+        return {...prevState, artistSearchResults: action.payload.artistSearchResults }
     case "SET_ALBUM_RESULTS":
-        return {...prevState, albumSearchResults: [...action.payload.albumSearchResults] }
+        return {...prevState, albumSearchResults: action.payload.albumSearchResults }
     case "SET_SONG_RESULTS":
         return {...prevState, songSearchResults: [...action.payload.songSearchResults] }
     case "RESET_ARTIST_SEARCH":
@@ -82,6 +91,12 @@ function reducer(prevState = defaultState, action){
         return {...prevState, songSearchResults: [] }
     case "SIGN_IN_USER":
         return {...prevState, signedIn: true }
+    case "SIGN_OUT":
+        return {...prevState, signedIn: false }
+    case "SIGN_UP":
+        return {...prevState, signUp: true }
+    case "RESET_USER":
+        return {...prevState, user: {} }
     default: 
       return prevState
   }

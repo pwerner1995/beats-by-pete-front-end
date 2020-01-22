@@ -14,6 +14,7 @@ import AlbumContainer from './containers/albumContainer'
 import SongContainer from './containers/songContainer'
 import SearchFrom from './components/searchForm'
 import SearchResultsContainer from './containers/searchResultsContainer'
+import ProfileContainer from './containers/profileContainer'
 
 
 class App extends React.Component{
@@ -31,12 +32,7 @@ class App extends React.Component{
     }
 
 
-    conditionalPlaylist = () => {
-        // console.log(this.props.songs[0])
-        this.props.songs[0].forEach(song => {
-            this.props.setPlaylist(song) 
-        })
-    }
+    
 
     render(){
         // console.log("Songs: ", this.props.songs)
@@ -48,13 +44,17 @@ class App extends React.Component{
             <div className="App">
                     {/* {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null} */}
                     
-                    {!this.props.signedIn ? <SignIn /> : null}
+                    {!this.props.signedIn && !this.props.signUp ? <SignIn /> : null}
+                    {!this.props.signedIn && this.props.signUp ? <SignUp /> : null}
                     {this.props.signedIn ? <NavBar /> : null}
                     {this.props.search ? <SearchFrom /> : null}
                     {!this.props.search && this.props.signedIn? <Switch>
                         <Route path = "/artists" render={() => <ArtistContainer />}/>
                         <Route path = "/albums" render={() => <AlbumContainer />}/>
                         <Route path = "/songs" render={() => <SongContainer />}/>
+                        <Route path = "/profile" render={() => <ProfileContainer />}/>
+                        {/* <Route path = "/signup" render={() => <SignUp />}/> */}
+
                     </Switch> : <SearchResultsContainer />}
                     
 
@@ -78,7 +78,8 @@ class App extends React.Component{
             searchResults: state.searchResults,
             player: state.player,
             signedIn: state.signedIn,
-            users: state.users
+            users: state.users,
+            signUp: state.signUp
         }
     }
 

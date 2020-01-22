@@ -57,6 +57,7 @@ function Artist(props) {
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
                 {props.artist.name}
+                <br/>
                 Average Rating: {props.artist.avg_rating}
               </Typography>
                 {/* {this.state.albums.length < 0 ? this.albums() : null}

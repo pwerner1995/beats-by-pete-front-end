@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import NavBar from './navBar'
 import { connect } from 'react-redux';
-import {SignInUser, SetUser} from '../actionCreators'
+import {SignInUser, SetUser, GetUserFavs, setSignUp} from '../actionCreators'
 
 function Copyright() {
   return (
@@ -62,9 +62,17 @@ function SignIn(props) {
 
     const checkUser = (e)=> {
         e.preventDefault()
-        if(props.users[0].filter((u) => u.username.includes(user)).length > 0){
-            props.SignInUser()
-            props.SetUser(user)
+        if(props.users.filter((u) => u.username.includes(user)).length > 0 && user !== ""){
+            let loginUser = {}
+            console.log(props.users.filter((u) => u.username.includes(user))[0])
+            loginUser = props.users.filter((u) => u.username.includes(user))[0]
+            if(loginUser){
+              props.SignInUser()
+              // console.log(props.user)
+              props.GetUserFavs(loginUser)
+            }else{
+              alert("Username not found!")
+            }
         }
     }
 
@@ -86,10 +94,10 @@ function SignIn(props) {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="username"
             label="Username"
-            name="email"
-            autoComplete="email"
+            name="username"
+            autoComplete="username"
             value = {user}
             autoFocus
             onChange={(e) => handleChange(e)}
@@ -119,18 +127,13 @@ function SignIn(props) {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" style={{color: 'black'}}>
-                Forgot password?
-              </Link>
+            <Grid container>
+              <Grid item style ={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
+                  <div variant="body2" onClick={()=> props.setSignUp()} style={{color: 'black'}}>
+                    {"Don't have an account? Sign Up"}
+                  </div>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2" style={{color: 'black'}}>
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>
@@ -143,13 +146,16 @@ function SignIn(props) {
 
 function msp(state){
     return{
-        users: state.users
+        users: state.users,
+        user: state.user
     }
 }
 
 const mdp ={
     SignInUser,
-    SetUser
+    SetUser,
+    GetUserFavs,
+    setSignUp
 }
 
 export default connect(msp, mdp)(SignIn)

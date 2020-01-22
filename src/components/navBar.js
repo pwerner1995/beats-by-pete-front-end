@@ -10,7 +10,7 @@ import Tab from '@material-ui/core/Tab';
 // import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {openSearchForm, closeSearchForm} from '../actionCreators'
+import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCreators'
 
 
 
@@ -43,11 +43,15 @@ import {openSearchForm, closeSearchForm} from '../actionCreators'
               <Link to="/artists" ><Tab label="Artists" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/albums" ><Tab label="Albums" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/songs" ><Tab label="Songs" onClick={() => props.closeSearchForm()} /></Link>
+              <Link to="/profile" ><Tab label="Profile" onClick={() => props.closeSearchForm()} /></Link>
               <Tab label="Search" onClick={() => props.openSearchForm()}/>
               </Tabs>
           : null}
           {/* <div style={{space: "90%"}}> */}
-            <Button color="inherit" >Login</Button> 
+            {props.signedIn ? <Button color="inherit" onClick={()=>{
+              props.SignOut()
+              props.ResetUser()
+            }}>Logout</Button> : <Button color="inherit" >Login</Button>} 
           {/* </div> */}
         </Toolbar>
       </AppBar>
@@ -63,7 +67,9 @@ function msp(state){
 
 const mdp ={
   openSearchForm,
-  closeSearchForm
+  closeSearchForm,
+  ResetUser,
+  SignOut
 }
      
 export default connect(msp, mdp)(NavBar)

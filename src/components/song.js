@@ -32,6 +32,7 @@ function Song(props) {
     //     })
     // }
       // console.log(props)
+      // console.log(props.song)
       return (
         <Grid item>
           <div style={{display: 'flex', justifyContent: "center", margin: "1.5em"}}>

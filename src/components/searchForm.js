@@ -43,15 +43,15 @@ function SearchForm(props) {
 
     
     const handleArtistChange = (e) => {
-        setArtist(e.target.value.toUpperCase())
+        setArtist(e.target.value)
     }
 
     const handleAlbumChange = (e) => {
-        setAlbum(e.target.value.toUpperCase())
+        setAlbum(e.target.value)
     }
 
     const handleSongChange = (e) => {
-        setSong(e.target.value.toUpperCase())
+        setSong(e.target.value)
     }
 
     const postSearchResults = (results) =>{
@@ -60,6 +60,11 @@ function SearchForm(props) {
         // console.log("state: ",state)
         let songs = []
         console.log("Deezer", results)
+        let searchTerms = {
+            artist: artist,
+            album: album,
+            song: song,
+        }
         if(results.data.length > 0){
             results.data.forEach((song) => {
                 // console.log(artists)
@@ -74,7 +79,7 @@ function SearchForm(props) {
                     // }
             })
         }
-        props.postSearch(songs)
+        props.postSearch(songs, searchTerms)
        
         
     }
@@ -102,14 +107,16 @@ function SearchForm(props) {
         // albumsArray = props.albums[0].filter(a => a.artist_name.toUpperCase().includes(artist))
         // songsArray = props.songs[0].filter(a => a.artist_name.toUpperCase().includes(artist))
 
-        if(album.length > 2){
-            albumsArray = [...albumsArray, ...props.albums.filter(a => a.title.toUpperCase().includes(album))]
-            songsArray = [...songsArray, ...props.songs.filter(a => a.album_name.toUpperCase().includes(album))]
-        }
+        // if(album.length > 2){
+        //     albumsArray = [...albumsArray, ...props.albums.filter(a => a.title.toUpperCase().includes(album))]
+        //     songsArray = [...songsArray, ...props.songs.filter(a => a.album_name.toUpperCase().includes(album))]
+        // }
         
-        if(song.length > 2){
-            songsArray = [...songsArray, props.songs.filter(a => a.title.toUpperCase().includes(song))]
-        }
+        // if(song.length > 2){
+        //     songsArray = [...songsArray, props.songs.filter(a => a.title.toUpperCase().includes(song))]
+        // }
+
+
         // console.log("filter aristArray", aristArray)
         // props.setArtistSearchResults(artistsArray)
         // props.setAlbumSearchResults(albumsArray)

@@ -40,7 +40,10 @@ function ReviewForm(props) {
       rating: rating,
       album_id: props.album.id
     }
-    props.postNewReview(reviewObj, props.user)
+    console.log("ARTISTS SEARCH", props.artistSearchResults)
+    console.log("ALBUMS SEARCH", props.albumSearchResults)
+    props.postNewReview(reviewObj, props.user, props.artistSearchResults, props.albumSearchResults)
+    props.closeForm()
     // console.log("Rating: ", rating)
     // console.log("Review: ", review)
   }
@@ -84,7 +87,9 @@ function ReviewForm(props) {
 
 function msp(state){
   return{
-    user: state.user
+    user: state.user,
+    artistSearchResults: state.artistSearchResults,
+    albumSearchResults: state.albumSearchResults
   }
 }
 

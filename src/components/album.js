@@ -64,6 +64,7 @@ function Album(props) {
             <CardContent>
               <Typography gutterBottom variant="p" component="p">
                 {props.album.title} by {props.album.artist_name}
+                <br/>
                 Average Rating: {props.album.avg_rating}
               </Typography>
             

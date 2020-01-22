@@ -110,10 +110,10 @@ export const  fetchUsers = () => {
         .then(resp => resp.json())
         .then(data => {
             // console.log(data[0])
-            dispatch({
-                type:"SET_USER", //temporary default user for testing
-                payload: {user: data[0]}
-            })
+            // dispatch({
+            //     type:"SET_USER", //temporary default user for testing
+            //     payload: {user: data[0]}
+            // })
             dispatch({
             type: "SET_USERS",
             payload: {users: data}
@@ -123,11 +123,49 @@ export const  fetchUsers = () => {
 
 }
 
-
+export function GetUserFavs(user){
+    return (dispatch) => {
+        fetch(`http://localhost:3000/api/v1/users/${user.id}`,{
+            headers:{
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data.recent_reviews)
+            dispatch({
+                type: "SET_USER",
+                payload: data.user
+            })
+            dispatch({
+                type: "SET_USER_FAVS",
+                payload: data.favs
+            })
+            dispatch({
+                type: "SET_USER_REVIEWS",
+                payload: data.recent_reviews
+            })
+        })
+    }
+}
 
 export function SignInUser(){
     return{
         type: "SIGN_IN_USER"
+    }
+}
+
+export function SignOut(){
+    return{
+        type: "SIGN_OUT"
+    }
+}
+export function ResetUser(){
+    return{
+        type: "RESET_USER"
     }
 }
 
@@ -173,6 +211,11 @@ export const setPlaylist = (song) => {
 export function playingSong(){
     return{
         type: "SET_PLAYING_BOOL"
+    }
+}
+export function setSignUp(){
+    return{
+        type: "SIGN_UP"
     }
 }
 
@@ -277,7 +320,36 @@ export function resetSongSearchResults(){
     }
 }
 
-export const postNewReview = (review, user) =>{
+
+export const deleteReview = (review) =>{
+    return (dispatch) =>{
+        fetch('http://localhost:3000/api/v1/reviews', {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Access-Control-Allow-Credentials': 'true'
+            },
+            body: JSON.stringify({
+                review
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            dispatch({
+                type: "SET_USER_FAVS",
+                payload: data.favs
+            })
+            dispatch({
+                type: "SET_USER_REVIEWS",
+                payload: data.recent_reviews
+            })
+        })
+    }
+}
+
+export const postNewReview = (review, user, artistSearchResults=[], albumSearchResults =[]) =>{
     console.log(review, user)
     return (dispatch) =>{
         fetch(`http://localhost:3000/api/v1/users/${user.id}/reviews`,{method: "POST",
@@ -288,7 +360,9 @@ export const postNewReview = (review, user) =>{
                     'Access-Control-Allow-Credentials': 'true'
                 },
                 body: JSON.stringify({
-                    review
+                    review,
+                    artistSearchResults,
+                    albumSearchResults
                 })
             })
             .then(resp => resp.json())
@@ -297,6 +371,30 @@ export const postNewReview = (review, user) =>{
                 if(data.error.length > 0){
                     alert(data.error)
                 }else{
+                    dispatch({
+                        type: "SET_USER_REVIEWS",
+                        payload: data.recent_reviews
+                    })
+                    dispatch({
+                        type: "SET_USER_FAVS",
+                        payload: data.favs
+                    })
+                    dispatch({
+                        type: "SET_USER_REVIEWS",
+                        payload: data.recent_reviews
+                    })
+                    dispatch({
+                        type: "SET_ALBUM_RESULTS",
+                        payload: {
+                            albumSearchResults: data.albumSearchResults
+                        }
+                    })
+                    dispatch({
+                        type: "SET_ARTIST_RESULTS",
+                        payload: {
+                            artistSearchResults: data.artistSearchResults
+                        }
+                    })
                     dispatch({
                         type: "SET_REVIEWS",
                         payload: {reviews: data.reviews}
@@ -322,10 +420,10 @@ export const postNewReview = (review, user) =>{
     }
 }
 
-export const postSearch = (songs) => {
+export const postSearch = (songs, searchTerms) => {
     // console.log("ARTISTS: ", artists)
     // console.log("ALBUMS: ", albums)
-    console.log("SONGS: ", songs)
+    console.log("Search Terms: ", searchTerms)
     // const postAlbums = (albums) =>{
 
     //     return (dispatch) =>{
@@ -343,7 +441,8 @@ export const postSearch = (songs) => {
                     'Access-Control-Allow-Credentials': 'true'
                 },
                 body: JSON.stringify({
-                    songs
+                    songs,
+                    searchTerms
                 })
             })
             .then(resp => resp.json())
@@ -381,65 +480,5 @@ export const postSearch = (songs) => {
                 })
                 // setArtistSearchResults([...resp])
             })
-        
-            // .then(
-            //     fetch("http://localhost:3000/api/v1/albums",{method: "POST",
-            //         headers:{
-            //             "Content-Type": "application/json",
-            //             "Accept": "application/json",
-            //             "Access-Control-Allow-Origin": "http://localhost:3000",
-            //             'Access-Control-Allow-Credentials': 'true'
-            //         },
-            //         body: JSON.stringify({
-            //             albums
-            //         })
-            //     })
-            //     .then(resp => resp.json())
-            //     .then((resp) => {
-            //         dispatch({
-            //             type: "SET_ALBUMS",
-            //             payload: {albums: resp}
-            //         })
-            //         setAlbumSearchResults(resp)
-            //     })
-            // )
-            // .then(postSongs(songs))
-        
     }
 }
-   
-
-
-
-// export const postSongs = (songs) =>{
-//     return (dispatch) =>{
-//         songs.forEach((song) => {
-//             fetch("http://localhost:3000/api/v1/songs",{method: "POST",
-//                 headers:{
-//                     "Content-Type": "application/json",
-//                     "Accept": "application/json",
-//                     "Access-Control-Allow-Origin": "http://localhost:3000",
-//                     'Access-Control-Allow-Credentials': 'true'
-//                 },
-//                 body: JSON.stringify({
-//                     song:{
-    
-//                         title: song.title,
-//                         duration: song.duration,
-//                         preview: song.preview
-//                     }
-//                 })
-//             })
-//             .then((resp) => {
-//                 dispatch({
-//                     type: "SET_SONGS",
-//                     payload: {songs: resp}
-//                 })
-//                 setSongSearchResults(resp)
-//             })
-//         })
-//     }
-// }
-
-
-
