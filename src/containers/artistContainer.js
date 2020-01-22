@@ -5,6 +5,7 @@ import Artist from '../components/artist'
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import ArtistPage from '../components/artistPage'
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -17,7 +18,13 @@ class ArtistContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
+            <div style={{display: 'flex', flexDirection: 'column', flexWrap: "wrap", justifyContent: "center", marginTop:"5%"}}>
+                <div style={{ marginBottom: "3%", color:"#FFA5B1" }}>
+                    <Typography gutterBottom variant="h6" component="h6">
+                        {`TOP RATED ARTISTS`}
+                    </Typography>
+                    </div>
+            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%", marginBottom:"20%", marginLeft:"10%"}}>
                 <Switch>
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
                     <Route path="/artists" render={() => {
@@ -34,6 +41,7 @@ class ArtistContainer extends React.Component {
                 
 
 
+            </div>
             </div>
             </Grid>
             </React.Fragment>

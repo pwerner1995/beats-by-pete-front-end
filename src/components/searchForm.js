@@ -150,7 +150,7 @@ function SearchForm(props) {
 
 
     return (
-    <form className={classes.formRoot} style={{marginTop:"10%"}} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
+    <form className={classes.formRoot} style={{marginTop:"5%"}} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
         <div>
         <TextField
             onChange = {(e) => handleArtistChange(e)}

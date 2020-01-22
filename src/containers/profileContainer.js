@@ -8,6 +8,7 @@ import Album from '../components/album'
 import Box from '@material-ui/core/Box';
 import ProfileReview from '../components/profileReview'
 import {GetUserFavs} from '../actionCreators'
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -23,20 +24,62 @@ class ProfileContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="profile-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
+            <div className="profile-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", marginBottom:"20%", marginTop:"5%", width: "80%", marginLeft:"10%"}}>
+                    {/* <Typography gutterBottom variant="h3" component="h3">
+                        {`${this.props.user.username}'s Profile`}
+                    </Typography>  */}
+
+                {this.props.userFavs === {} ? 
+                    <Typography gutterBottom variant="h6" component="h6" >
+                        {`You dont have any reviews yet!`}
+                    </Typography> 
+                    : null
+                    }
+                <div>
+                    {this.props.userFavs.artists ? 
+                     <div style={{ color:"#FFA5B1" }}>
+                     <Typography gutterBottom variant="h6" component="h6" >
+                         {`FAVORITE ARTISTS`}
+                     </Typography> 
+                     </div>
+                     : null
+                    }
+                    
                 <Box>
+
                     {this.props.userFavs.artists ? this.props.userFavs.artists.map((artist) => {
                         return <Artist artist = {artist} />
                     }) : null
                 }
                 </Box>
-
+                </div>
+                <div>
+                {this.props.userFavs.albums ? 
+                     <div style={{ color:"#FFA5B1" }}>
+                     <Typography gutterBottom variant="h6" component="h6" >
+                         {`FAVORITE ALBUMS`}
+                     </Typography> 
+                     </div>
+                     : null
+                    }
                 <Box>
                     {this.props.userFavs.albums ? this.props.userFavs.albums.map((album) => {
+                        console.log(album)
                         return <Album album = {album} /> 
                     }) : null
                 }
                 </Box>
+                </div>
+                <div>
+                    {this.props.recentRevs.length > 0 ? 
+                     <div style={{ color:"#FFA5B1" }}>
+                     <Typography gutterBottom variant="h6" component="h6" >
+                         {`LAST 5 REVIEWS`}
+                     </Typography> 
+                     </div>
+                     : null
+                    }
+
                 <Box>
                     {/* {this.props.user ? this.fetchUserInfo() : null} */}
                     {this.props.recentRevs ? this.props.recentRevs.map((rev) => {
@@ -44,6 +87,7 @@ class ProfileContainer extends React.Component {
                     }) : null
                 }
                 </Box>
+                </div>
                 
                 {/* <Switch>
                     <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>

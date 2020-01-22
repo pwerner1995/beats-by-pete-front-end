@@ -37,7 +37,7 @@ function Album(props) {
       console.log("review bool", openReviewForm)
     }
 
-
+    console.log(props.album)
       return (
         <div style={{margin: "1.5em"}}>
         <Grid item>

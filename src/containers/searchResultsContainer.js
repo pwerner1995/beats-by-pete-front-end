@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Artist from '../components/artist'
 import Song from '../components/song'
 import Typography from '@material-ui/core/Typography';
+import LoadingBar from '../components/loadingBar'
 
 
 
@@ -110,36 +111,37 @@ class SearchResultsContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="search-container" style={{marginTop:"5%"}}>
+            <div className="search-container" style={{marginTop:"5%", marginLeft:"10%", display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%"}}>
+                {this.props.artistSearchResults.length <1 && this.props.signedIn ? <LoadingBar /> : null}
                 
                 {this.props.artistSearchResults.length > 0 ? 
-                    <div>
-                    <Typography gutterBottom variant="h6" component="h6">
+                    <div style={{color:"#FFA5B1"}}>
+                    <Typography gutterBottom variant="h3" component="h3">
                         Artists
                     </Typography> 
-                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center"}}>
                     {this.renderArtists()}
                     </div> 
                     </div> 
                     : null}
                  
                 {this.props.albumSearchResults.length > 0 ? 
-                    <div>
-                    <Typography gutterBottom variant="h6" component="h6">
+                    <div style={{color:"#FFA5B1"}}>
+                    <Typography gutterBottom variant="h3" component="h3">
                         Albums
                     </Typography> 
-                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center"}}>
                     {this.renderAlbums()}
                     </div>
                     </div> 
                     : null}
                 
                 {this.props.songSearchResults.length > 0 ? 
-                    <div>
-                    <Typography gutterBottom variant="h6" component="h6">
+                    <div style={{color:"#FFA5B1"}}>
+                    <Typography gutterBottom variant="h3" component="h3">
                         Songs
                     </Typography> 
-                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "left", width: "100%"}}>
+                    <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center"}}>
                     {this.renderSongs()}
                     </div> 
                     </div> 
@@ -163,7 +165,8 @@ const msp = state =>{
         songSearchResults: state.songSearchResults,
         artists: state.artists,
         albums: state.albums,
-        songs: state.songs
+        songs: state.songs,
+        signedIn: state.signedIn
 
 
     }

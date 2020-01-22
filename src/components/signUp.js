@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import NavBar from './navBar'
+import {createUser, resetUserError, setSignUpFalse} from '../actionCreators'
 
 function Copyright() {
   return (
@@ -52,10 +53,52 @@ const useStyles = makeStyles(theme => ({
 function SignUp(props) {
   const classes = useStyles();
 
+  const [user, setUser] = React.useState('')
+  const [confirm, setConfirm] = React.useState('')
+
+  const handleUserChange = (e) =>{
+      setUser(e.target.value)
+  }
+
+  const handleConfirmChange = (e) =>{
+      setConfirm(e.target.value)
+      
+  }
+  
+  const clearUserEntries = () => {
+      setUser('')
+      setConfirm('')
+      
+  }
+
+  const userExists = () =>{
+    let error = props.userError
+    if(user !== ""){
+      props.resetUserError()
+      console.log(props.userError)
+      alert(error)
+      clearUserEntries()
+    }
+  }
+
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    if(user !== confirm){
+      alert("Username's dont match, try again!")
+      clearUserEntries()
+    }else{
+      props.createUser(user)
+      props.setSignUpFalse()
+    }
+  }
+
+  console.log("USER", user)
+  console.log("CONFIRM", confirm)
   return (
     <div>
     <NavBar />
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{marginTop: "5%"}}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -64,7 +107,8 @@ function SignUp(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        {props.userError.length > 0 ? userExists() : null}
+        <form className={classes.form} onSubmit={(e)=> handleSubmit(e)} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -74,9 +118,9 @@ function SignUp(props) {
             label="Username"
             name="username"
             autoComplete="username"
-            // value = {user}
+            value = {user}
             autoFocus
-            // onChange={(e) => handleChange(e)}
+            onChange={(e) => handleUserChange(e)}
           />
           <TextField
             variant="outlined"
@@ -87,9 +131,9 @@ function SignUp(props) {
             label="Confirm Username"
             name="Confirm Username"
             autoComplete="Confirm Username"
-            // value = {user}
+            value = {confirm}
             autoFocus
-            // onChange={(e) => handleChange(e)}
+            onChange={(e) => handleConfirmChange(e)}
           />
           {/* <TextField
             variant="outlined"
@@ -135,12 +179,14 @@ function SignUp(props) {
 
 function msp(state){
   return {
-    state
+    userError: state.userError
   }
 }
 
-// const mdp ={
+const mdp ={
+  createUser,
+  resetUserError,
+  setSignUpFalse
+}
 
-// }
-
-export default connect(msp)(SignUp)
+export default connect(msp, mdp)(SignUp)

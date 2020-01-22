@@ -29,7 +29,9 @@ const defaultState = {
     topRatedArtists: [],
     userFavs: {},
     recentRevs: [],
-    signUp: false
+    signUp: false,
+    userError: "",
+    petesTreats: []
 
 
 }
@@ -38,6 +40,8 @@ function reducer(prevState = defaultState, action){
   switch(action.type){
     case "SET_ARTISTS":
       return {...prevState, artists: action.payload.artists}
+    case "SET_PETES_TREATS":
+      return {...prevState, petesTreats: action.payload.treats}
     case "SET_ALBUMS":
       return {...prevState, albums: action.payload.albums}
     case "SET_TOP_ARTISTS":
@@ -95,6 +99,12 @@ function reducer(prevState = defaultState, action){
         return {...prevState, signedIn: false }
     case "SIGN_UP":
         return {...prevState, signUp: true }
+    case "SIGN_UP_FALSE":
+        return {...prevState, signUp: false }
+    case "CREATE_USER_ERROR":
+        return {...prevState, userError: action.payload.error }
+    case "RESET_USER_ERROR":
+        return {...prevState, userError: "" }
     case "RESET_USER":
         return {...prevState, user: {} }
     default: 

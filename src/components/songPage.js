@@ -23,57 +23,37 @@ const useStyles = makeStyles({
 function SongPage(props) {
     // let artistAlbums = []
     const classes = useStyles();
-    // const albums = () =>{
-    //     artistAlbums = props.albums[0].map(album => {
-    //          if(album.artist_id === props.artist.id){
-    //              this.setState({albums: [...this.state.albums, album.title]})
-    //          }
-    //     })
-    // }
-    if(!props.song.id && props.songs[0]){
-      let song = {} 
-      console.log(song)
-      song = props.songs.find(song => song.id === parseInt(props.match.params.id))
-      props.selectSong(song)
+    // let lyricsArtist = ""
+    // let lyricsSong =  ""
 
-  }
+    // const fetchLyrics = () =>{
+    //   lyricsArtist = props.song.artist_name.toLowerCase().split(" ").join("%2520")
+    //   lyricsSong = props.song.title.toLowerCase().split(" ").join("%2520")
+    //   fetch(`https://sridurgayadav-chart-lyrics-v1.p.rapidapi.com/apiv1.asmx/SearchLyricDirect?artist=${lyricsArtist}&song=${lyricsSong}`, {
+    //       "method": "GET",
+    //       "headers": {
+    //         "x-rapidapi-host": "sridurgayadav-chart-lyrics-v1.p.rapidapi.com",
+    //         "x-rapidapi-key": "3f7b8337f8msh54164a2afdb63a2p12c84fjsn17115393b37d"
+    //       }
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    // }
+
+    if(!props.song.id && props.songs[0]){
+        let song = {}
+        console.log(song)
+        song = props.songs.find(song => song.id === parseInt(props.match.params.id))
+        props.selectSong(song)
+
+    }
       console.log(props.song)
+      // if(props.song.id){
+      //   fetchLyrics()
+      // }
       return (
         <SongPlayCard song = {props.song}/>
-        // <Grid item>
-        // <Card className = {classes.card} >
-        //   <CardActionArea>
-        //     <CardMedia
-        //         className = {classes.media}
-        //         component="img"
-        //         height="140"
-        //         width="345"
-        //         image= {props.song.album_cover}
-        //         title= {props.song.title}
-        //     />
-        //     <CardContent>
-        //       <Typography gutterBottom variant="p" component="p">
-        //         {props.song.title} by {props.song.artist_name}
-        //       </Typography>
-        //         {/* {this.state.albums.length < 0 ? this.albums() : null}
-        //         {this.state.albums.forEach(album => {
-        //             return(<Typography variant="body2" color="textSecondary" component="p">
-        //                 album
-        //             </Typography>)
-        //         })
-        //         } */}
-        //     </CardContent>
-        //   </CardActionArea>
-        //   {/* <CardActions>
-        //     <Button size="small" color="primary">
-        //       Share
-        //     </Button>
-        //     <Button size="small" color="primary">
-        //       Learn More
-        //     </Button>
-        //   </CardActions> */}
-        // </Card>
-        // </Grid>
+        
       );
 
   }

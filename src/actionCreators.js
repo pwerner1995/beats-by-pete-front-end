@@ -39,12 +39,16 @@ export const  fetchSongs = () => {
             }
         })
         .then(resp => resp.json())
-        .then(data => dispatch({
-            type: "SET_SONGS",
-            payload: {songs: data}
-        }
-
-        ))
+        .then(data => {
+            dispatch({
+                type: "SET_SONGS",
+                payload: {songs: data.songs}
+            })
+            dispatch({
+                type:"SET_PETES_TREATS",
+                payload: {treats: data.treats}
+            })
+        })
         
     }
 
@@ -218,6 +222,11 @@ export function setSignUp(){
         type: "SIGN_UP"
     }
 }
+export function setSignUpFalse(){
+    return{
+        type: "SIGN_UP_FALSE"
+    }
+}
 
 export function setArtist(data){
     return{
@@ -317,6 +326,46 @@ export function resetAlbumSearchResults(){
 export function resetSongSearchResults(){
     return{
         type: "RESET_SONG_SEARCH"
+    }
+}
+
+export function resetUserError(){
+    return{
+        type: "RESET_USER_ERROR"
+    }
+}
+
+export const createUser = (userName) =>{
+    return (dispatch) =>{
+        fetch("http://localhost:3000/api/v1/users",{method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            'Access-Control-Allow-Credentials': 'true'
+        },
+        body: JSON.stringify({
+            userName
+        })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            if(data.error === ""){
+                dispatch({
+                    type: "SIGN_UP_FALSE"
+                })
+                dispatch({
+                    type: "SET_USERS",
+                    payload: {users: data.users}
+                })
+            }else{
+                dispatch({
+                    type: "CREATE_USER_ERROR",
+                    payload: {error: data.error}
+                })
+            }
+        })
     }
 }
 

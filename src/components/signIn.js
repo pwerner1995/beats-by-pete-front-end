@@ -68,6 +68,7 @@ function SignIn(props) {
             loginUser = props.users.filter((u) => u.username.includes(user))[0]
             if(loginUser){
               props.SignInUser()
+              props.SetUser(loginUser)
               // console.log(props.user)
               props.GetUserFavs(loginUser)
             }else{
@@ -79,7 +80,7 @@ function SignIn(props) {
   return (
     <div>
     <NavBar />
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{marginTop: "5%"}}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

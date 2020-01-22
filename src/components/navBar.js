@@ -33,7 +33,7 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
 
   return (
     <div className={classes.root} >
-      <AppBar position="fixed" style = {{backgroundColor: "pink"}}>
+      <AppBar position="fixed" style = {{backgroundColor: "pink", height: "7%"}}>
         <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
           <Typography variant="h6" >
             Deezer's Teasers
@@ -42,7 +42,7 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
             <Tabs aria-label="simple tabs example">
               <Link to="/artists" ><Tab label="Artists" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/albums" ><Tab label="Albums" onClick={() => props.closeSearchForm()} /></Link>
-              <Link to="/songs" ><Tab label="Songs" onClick={() => props.closeSearchForm()} /></Link>
+              <Link to="/songs" ><Tab label="Pete's Treats" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/profile" ><Tab label="Profile" onClick={() => props.closeSearchForm()} /></Link>
               <Tab label="Search" onClick={() => props.openSearchForm()}/>
               </Tabs>
