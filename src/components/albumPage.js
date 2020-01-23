@@ -56,7 +56,7 @@ function AlbumPage(props) {
                     component="img"
                     height="140"
                     width="345"
-                    image= {props.album.cover}
+                    image= {props.album.lg_cover ? props.album.lg_cover : props.album.cover }
                     title= {props.album.title}
                 />
                 <CardContent>

@@ -42,6 +42,7 @@ function Artist(props) {
     }
     if(props.albums[0]){
         albums = props.albums.filter(album => album.artist_id === props.artist.id)
+        albums = albums.sort((a, b) => (b.avg_rating > a.avg_rating) ? 1 : -1)
         // if(props.albums[1]){
         //   props.albums.forEach((arr)=>{
         //     albums = [...albums, arr.filter(album => album.artist_id ===props.artist.id)]
@@ -62,7 +63,7 @@ function Artist(props) {
                   component="img"
                   height="140"
                   width="345"
-                  image= {props.artist.picture}
+                  image= {props.artist.lg_picture ? props.artist.lg_picture : props.artist.picture}
                   title= {props.artist.name}
               />
               <CardContent>
