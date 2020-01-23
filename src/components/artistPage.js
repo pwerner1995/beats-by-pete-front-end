@@ -16,10 +16,11 @@ import {selectArtist} from '../actionCreators'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 240,
+        maxWidth: 480,
       },
       media: {
-        height: 240,
+        height: 480,
+        width: 480
       },
 });
 function Artist(props) {
@@ -53,7 +54,8 @@ function Artist(props) {
 
         return (
           <Grid item>
-          <Card className = {classes.card} style={{marginBottom: "10%", marginTop: "5%", marginLeft: "5%", marginTop:"5%"}} >
+          <div style={{display: 'flex', flexDirection: 'column', flexWrap: "wrap", justifyContent: "center", marginTop:"5%", width: "80%", marginLeft: "10%"}}>
+          <Card className = {classes.card} style={{display: 'flex', marginBottom: "5%", alignSelf: "center"}}>
             <CardActionArea>
               <CardMedia
                   className = {classes.media}
@@ -64,8 +66,10 @@ function Artist(props) {
                   title= {props.artist.name}
               />
               <CardContent>
-                <Typography gutterBottom variant="p" component="p">
+                <Typography gutterBottom variant="subtitle1" component="p">
                   {props.artist.name}
+                    <br/>
+                  Average Rating: {props.artist.avg_rating}
                 </Typography>
                   {/* {this.state.albums.length < 0 ? this.albums() : null}
                   {this.state.albums.forEach(album => {
@@ -85,8 +89,9 @@ function Artist(props) {
               </Button>
             </CardActions> */}
           </Card>
-          <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%"}}> 
+          <div style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", marginBottom:"20%", alignSelf: "center"}}> 
             {albums.map(album => <Album album ={album}/>)}
+          </div>
           </div>
           </Grid>
         );

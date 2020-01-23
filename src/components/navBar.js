@@ -35,9 +35,11 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
     <div className={classes.root} >
       <AppBar position="fixed" style = {{backgroundColor: "pink", height: "7%"}}>
         <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
+          <Link to="/home">
           <Typography variant="h6" >
             Deezer's Teasers
           </Typography>
+          </Link>
             {props.signedIn ? 
             <Tabs aria-label="simple tabs example">
               <Link to="/artists" ><Tab label="Artists" onClick={() => props.closeSearchForm()} /></Link>
@@ -48,10 +50,10 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
               </Tabs>
           : null}
           {/* <div style={{space: "90%"}}> */}
-            {props.signedIn ? <Button color="inherit" onClick={()=>{
+            {props.signedIn ? <Link to=""><Button color="inherit" onClick={()=>{
               props.SignOut()
               props.ResetUser()
-            }}>Logout</Button> : <Button color="inherit" >Login</Button>} 
+            }}>Logout</Button> </Link>: <Button color="inherit" >Login</Button>} 
           {/* </div> */}
         </Toolbar>
       </AppBar>

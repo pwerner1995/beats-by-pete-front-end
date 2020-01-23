@@ -29,22 +29,15 @@ class AlbumContainer extends React.Component {
                         </div>
                 <div className="album-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%", marginBottom:"20%", marginLeft:"10%"}}>
                     
-                <Switch>
-                    <Route path="/albums/:id" render={(routerProps) => {
-                            // console.log("test")
-                            return <AlbumPage  {...routerProps}/>
-                            }}/>        
-                    <Route exact path="/albums" render={() => {
-                        if(this.props.topRatedAlbums.length > 0) {
-                            return (this.props.topRatedAlbums.map(album => {    
+                
+                        
+                        {this.props.topRatedAlbums.length > 0 ? this.props.topRatedAlbums.map(album => {    
                                     // console.log("album container",album)
                                     return <Album album = {album}/>
-                                })
-                            )
-                        }
-                    }}/>
+                                }) : null}
                     
-                </Switch>
+                    
+                
                 
                 
 

@@ -14,10 +14,11 @@ import SongPlayCard from './songPlayCard'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 240,
+        maxWidth: 480,
       },
       media: {
-        height: 240,
+        height: 480,
+        width: 480
       },
 });
 function SongPage(props) {
@@ -48,12 +49,10 @@ function SongPage(props) {
 
     }
       console.log(props.song)
-      // if(props.song.id){
-      //   fetchLyrics()
-      // }
       return (
+        <div style={{marginTop:"5%"}}>
         <SongPlayCard song = {props.song}/>
-        
+        </div>
       );
 
   }

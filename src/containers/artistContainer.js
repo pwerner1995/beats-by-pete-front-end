@@ -25,18 +25,10 @@ class ArtistContainer extends React.Component {
                     </Typography>
                     </div>
             <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%", marginBottom:"20%", marginLeft:"10%"}}>
-                <Switch>
-                    <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
-                    <Route path="/artists" render={() => {
-                        if(this.props.topRatedArtists.length > 0) {
-                            return (this.props.topRatedArtists.map(artist => {    
+                {this.props.topRatedArtists.length > 0 ? this.props.topRatedArtists.map(artist => {    
                                     // console.log("artist container",artist)
                                     return <Artist artist = {artist} albums = {this.props.albums}/>
-                                })
-                            )
-                        }
-                    }}/>
-                </Switch>
+                                }) : null}
             
                 
 

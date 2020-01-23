@@ -111,11 +111,11 @@ class SearchResultsContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
-            <div className="search-container" style={{marginTop:"5%", marginLeft:"10%", display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%"}}>
+            <div className="search-container" style={{marginLeft:"10%", display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%"}}>
                 {this.props.artistSearchResults.length <1 && this.props.signedIn ? <LoadingBar /> : null}
                 
                 {this.props.artistSearchResults.length > 0 ? 
-                    <div style={{color:"#FFA5B1"}}>
+                    <div style={{color:"#FFA5B1", marginTop:"3%", fontWeight: "bold"}}>
                     <Typography gutterBottom variant="h3" component="h3">
                         Artists
                     </Typography> 
@@ -126,7 +126,7 @@ class SearchResultsContainer extends React.Component {
                     : null}
                  
                 {this.props.albumSearchResults.length > 0 ? 
-                    <div style={{color:"#FFA5B1"}}>
+                    <div style={{color:"#FFA5B1", marginTop:"3%", fontWeight: "bold"}}>
                     <Typography gutterBottom variant="h3" component="h3">
                         Albums
                     </Typography> 
@@ -137,7 +137,7 @@ class SearchResultsContainer extends React.Component {
                     : null}
                 
                 {this.props.songSearchResults.length > 0 ? 
-                    <div style={{color:"#FFA5B1"}}>
+                    <div style={{color:"#FFA5B1", marginTop:"3%", fontWeight: "bold"}}>
                     <Typography gutterBottom variant="h3" component="h3">
                         Songs
                     </Typography> 

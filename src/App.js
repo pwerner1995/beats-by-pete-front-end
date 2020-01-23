@@ -15,6 +15,10 @@ import SongContainer from './containers/songContainer'
 import SearchFrom from './components/searchForm'
 import SearchResultsContainer from './containers/searchResultsContainer'
 import ProfileContainer from './containers/profileContainer'
+import AlbumPage from './components/albumPage'
+import ArtistPage from './components/artistPage'
+import SongPage from './components/songPage'
+
 
 
 class App extends React.Component{
@@ -49,10 +53,19 @@ class App extends React.Component{
                     {this.props.signedIn ? <NavBar /> : null}
                     {this.props.search ? <SearchFrom /> : null}
                     {!this.props.search && this.props.signedIn? <Switch>
-                        <Route path = "/artists" render={() => <ArtistContainer />}/>
-                        <Route path = "/albums" render={() => <AlbumContainer />}/>
-                        <Route path = "/songs" render={() => <SongContainer />}/>
+                        <Route path="/albums/:id" render={(routerProps) => {
+                            // console.log("test")
+                            return <AlbumPage  {...routerProps}/>
+                            }}/> 
+                        <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
+                        <Route path="/songs/:id" render={(routerProps)=> <SongPage {...routerProps}/>}/>
+                        <Route exact path = "/artists" render={() => <ArtistContainer />}/>
+                        <Route exact path = "/albums" render={() => <AlbumContainer />}/>
+                        <Route exact path = "/songs" render={() => <SongContainer />}/>
                         <Route path = "/profile" render={() => <ProfileContainer />}/>
+                        <Route exact path = "/home" render={() => <ArtistContainer />}/>
+                        <Route exact path = "/" render={() => <ArtistContainer />}/>
+                        <Route exact path = "" render={() => <ArtistContainer />}/>
                         {/* <Route path = "/signup" render={() => <SignUp />}/> */}
 
                     </Switch> : <SearchResultsContainer />}
