@@ -104,29 +104,12 @@ function SignIn(props) {
             autoFocus
             onChange={(e) => handleChange(e)}
           />
-          {/* <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-
-          >
+            className={classes.submit}>
             Sign In
           </Button>
             <Grid container>

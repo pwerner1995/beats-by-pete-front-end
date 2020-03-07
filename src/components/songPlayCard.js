@@ -145,17 +145,7 @@ const useStyles = makeStyles({
       },
 });
 function SongPlayCard(props) {
-    // let artistAlbums = []
     const classes = useStyles();
-    // const albums = () =>{
-    //     artistAlbums = props.albums[0].map(album => {
-    //          if(album.artist_id === props.artist.id){
-    //              this.setState({albums: [...this.state.albums, album.title]})
-    //          }
-    //     })
-    // }
-      // console.log(props)
-      // console.log(props.song)
       return (
         <Grid item>
           <div style={{display: 'flex', justifyContent: "center", margin: "1.5em"}}>
@@ -179,18 +169,9 @@ function SongPlayCard(props) {
               <Typography gutterBottom variant="p" component="p">
                 {props.song.title} by {props.song.artist_name}
               </Typography>
-                {/* {this.state.albums.length < 0 ? this.albums() : null}
-                {this.state.albums.forEach(album => {
-                    return(<Typography variant="body2" color="textSecondary" component="p">
-                        album
-                    </Typography>)
-                })
-                } */}
             </CardContent>
           </CardActionArea>
           <CardActions>
-            
-
             {!props.playing ? <Button size="small" color="primary" onClick ={() => {
                   if(!props.playlist.includes(props.song)){
                     props.setPlaylist(props.song)
@@ -207,7 +188,6 @@ function SongPlayCard(props) {
                     Close Music Player
                   </Button>
                   }
-            
           </CardActions>
         </Card>
         </Link>

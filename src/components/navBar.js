@@ -6,16 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-// import PropTypes from 'prop-types';
-// import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCreators'
 
-
-
-
- function NavBar(props) {
+function NavBar(props) {
   
   const useStyles = makeStyles(theme => ({
     root: {
@@ -50,12 +45,10 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
               <Tab label="Search" onClick={() => props.openSearchForm()}/>
               </Tabs>
           : null}
-          {/* <div style={{space: "90%"}}> */}
             {props.signedIn ? <Link to=""><Button color="inherit" onClick={()=>{
               props.SignOut()
               props.ResetUser()
             }}>Logout</Button> </Link>: <Button color="inherit" >Login</Button>} 
-          {/* </div> */}
         </Toolbar>
       </AppBar>
     </div>

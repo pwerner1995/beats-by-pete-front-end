@@ -100,7 +100,6 @@ function SearchForm(props) {
         <div>
             {props.signedIn ? 
             <form className={classes.formRoot} style={{marginTop:"5%"}} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
-                {/* <div> */}
                 <TextField
                     onChange = {(e) => handleArtistChange(e)}
                     value = {artist}
@@ -133,8 +132,6 @@ function SearchForm(props) {
                     Search
                 </Button> 
                 </div>
-
-                {/* </div> */}
             </form> : null}
         </div>
     );

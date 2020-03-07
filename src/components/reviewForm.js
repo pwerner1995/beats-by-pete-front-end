@@ -44,16 +44,11 @@ function ReviewForm(props) {
     console.log("ALBUMS SEARCH", props.albumSearchResults)
     props.postNewReview(reviewObj, props.user, props.artistSearchResults, props.albumSearchResults)
     props.closeForm()
-    // console.log("Rating: ", rating)
-    // console.log("Review: ", review)
   }
-
-  // console.log("PROPS",props)
   return (
     <form className={classes.root} onSubmit={(e) => postReview(e)} noValidate autoComplete="off">
       <div>
       <TextField
-          // className = {classes.root}
           onChange = {(e) => handleRatingChange(e)}
           id="outlined-number"
           label="Rating (out of 10)"

@@ -134,9 +134,7 @@ const useStyles = makeStyles(theme => ({
 function ProfileReview(props) {
   const classes = useStyles();
   let album = props.albums.filter((album) => album.id === props.review.album_id)[0]
-  // console.log(album)
   const theme = useTheme();
-  // console.log(props.song.title)
 
   return (
     <Card className={classes.card} style={{margin: "2em", display:"flex"}}>
@@ -145,29 +143,18 @@ function ProfileReview(props) {
            <Typography gutterBottom variant="h5" component="h5">
              {props.review.rating}
            </Typography>
-          
-
            <Typography variant="body2" color="textSecondary" component="p">
              {props.review.content}
            </Typography>
-          
-
           <Button size="small" color="primary" onClick={()=> props.deleteReview(props.review)}>
             Delete
           </Button>
         </CardContent>
-        
-        
-  
-      
-   
-      
       <CardMedia
         className={classes.cover}
         component="img"
         image={album.cover}
         title={album.title}
-        // style={{justifyContent: "flex-end"}}
       />
     </Card>
   );
