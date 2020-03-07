@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Playlist from 'react-mp3-player';
-import Player from 'react-mp3-player';
+// import Player from 'react-mp3-player';
 import 'typeface-roboto';
 import { connect } from 'react-redux';
 import { fetchArtists, fetchAlbums, fetchSongs, setPlaylist, fetchUsers } from './actionCreators'

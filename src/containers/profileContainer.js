@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom'
 import Artist from '../components/artist'
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,16 +25,6 @@ class ProfileContainer extends React.Component {
             <Grid container flexGrow={1} >
             {Object.keys(this.props.userFavs).length > 0 ? 
             <div className="profile-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", marginBottom:"20%", marginTop:"5%", width: "80%", marginLeft:"10%"}}>
-                    {/* <Typography gutterBottom variant="h3" component="h3">
-                        {`${this.props.user.username}'s Profile`}
-                    </Typography>  */}
-
-                {/* {this.props.userFavs === {} || (this.props.userFavs.artists.length <1 &&  this.props.userFavs.albums.length) ? 
-                    <Typography gutterBottom variant="h6" component="h6" >
-                        {`You dont have any reviews yet!`}
-                    </Typography> 
-                    : null
-                    } */}
                 <div>
                     {this.props.userFavs.artists.length > 0 ? 
                      <div style={{ color:"#FFA5B1" }}>
@@ -91,22 +80,6 @@ class ProfileContainer extends React.Component {
                 }
                 </Box>
                 </div>
-                
-                {/* <Switch>
-                    <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
-                    <Route path="/artists" render={() => {
-                        if(this.props.topRatedArtists.length > 0) {
-                            return (this.props.topRatedArtists.map(artist => {    
-                                    // console.log("artist container",artist)
-                                    return <Artist artist = {artist} albums = {this.props.albums}/>
-                                })
-                            )
-                        }
-                    }}/>
-                </Switch> */}
-            
-                
-
 
             </div>
             :   <div style={{ color:"#FFA5B1" }}>

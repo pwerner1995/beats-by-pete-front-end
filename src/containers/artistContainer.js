@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom'
 import Artist from '../components/artist'
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ArtistPage from '../components/artistPage'
 import Typography from '@material-ui/core/Typography';
 
 
@@ -23,17 +21,12 @@ class ArtistContainer extends React.Component {
                     <Typography gutterBottom variant="h6" component="h6">
                         {`TOP RATED ARTISTS`}
                     </Typography>
-                    </div>
-            <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%", marginBottom:"20%", marginLeft:"10%"}}>
-                {this.props.topRatedArtists.length > 0 ? this.props.topRatedArtists.map(artist => {    
-                                    // console.log("artist container",artist)
-                                    return <Artist artist = {artist} albums = {this.props.albums}/>
-                                }) : null}
-            
-                
-
-
-            </div>
+                </div>
+                <div className="artist-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%", marginBottom:"20%", marginLeft:"10%"}}>
+                    {this.props.topRatedArtists.length > 0 ? this.props.topRatedArtists.map(artist => {    
+                                        return <Artist artist = {artist} albums = {this.props.albums}/>
+                                    }) : null}
+                </div>
             </div>
             </Grid>
             </React.Fragment>
