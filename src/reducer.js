@@ -31,7 +31,8 @@ const defaultState = {
     recentRevs: [],
     signUp: false,
     userError: "",
-    petesTreats: []
+    petesTreats: [],
+    mattsSlaps: []
 
 
 }
@@ -42,6 +43,8 @@ function reducer(prevState = defaultState, action){
       return {...prevState, artists: action.payload.artists}
     case "SET_PETES_TREATS":
       return {...prevState, petesTreats: action.payload.treats}
+    case "SET_MATTS_SLAPS":
+      return {...prevState, mattsSlaps: action.payload.slaps}
     case "SET_ALBUMS":
       return {...prevState, albums: action.payload.albums}
     case "SET_TOP_ARTISTS":

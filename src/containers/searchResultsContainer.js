@@ -110,6 +110,7 @@ class SearchResultsContainer extends React.Component {
         return (
             <React.Fragment>
             <CssBaseline />
+            {this.props.signedIn ? 
             <Grid container flexGrow={1} >
             <div className="search-container" style={{marginLeft:"10%", display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "80%"}}>
                 {this.props.artistSearchResults.length <1 && this.props.signedIn ? <LoadingBar /> : null}
@@ -151,6 +152,7 @@ class SearchResultsContainer extends React.Component {
 
             </div>
             </Grid>
+            : null}
             </React.Fragment>
         )
     }

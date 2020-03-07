@@ -18,6 +18,7 @@ import ProfileContainer from './containers/profileContainer'
 import AlbumPage from './components/albumPage'
 import ArtistPage from './components/artistPage'
 import SongPage from './components/songPage'
+import MattsSlaps from './containers/mattsSlaps'
 
 
 
@@ -62,6 +63,7 @@ class App extends React.Component{
                         <Route exact path = "/artists" render={() => <ArtistContainer />}/>
                         <Route exact path = "/albums" render={() => <AlbumContainer />}/>
                         <Route exact path = "/songs" render={() => <SongContainer />}/>
+                        <Route exact path = "/slaps" render={() => <MattsSlaps />}/>
                         <Route path = "/profile" render={() => <ProfileContainer />}/>
                         <Route exact path = "/home" render={() => <ArtistContainer />}/>
                         <Route exact path = "/" render={() => <ArtistContainer />}/>

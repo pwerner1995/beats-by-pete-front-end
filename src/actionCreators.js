@@ -48,6 +48,10 @@ export const  fetchSongs = () => {
                 type:"SET_PETES_TREATS",
                 payload: {treats: data.treats}
             })
+            dispatch({
+                type:"SET_MATTS_SLAPS",
+                payload: {slaps: data.slaps}
+            })
         })
         
     }
@@ -470,15 +474,7 @@ export const postNewReview = (review, user, artistSearchResults=[], albumSearchR
 }
 
 export const postSearch = (songs, searchTerms) => {
-    // console.log("ARTISTS: ", artists)
-    // console.log("ALBUMS: ", albums)
     console.log("Search Terms: ", searchTerms)
-    // const postAlbums = (albums) =>{
-
-    //     return (dispatch) =>{
-            
-    //     }
-    // }
 
     return (dispatch) => {
         // artists.forEach((artist) => {

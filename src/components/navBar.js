@@ -33,7 +33,7 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
 
   return (
     <div className={classes.root} >
-      <AppBar position="fixed" style = {{backgroundColor: "pink", height: "7%"}}>
+      <AppBar position="fixed" style = {{backgroundColor: "#FFA5B1", height: "7%"}}>
         <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
           <Link to="/home">
           <Typography variant="h6" >
@@ -45,6 +45,7 @@ import {openSearchForm, closeSearchForm, ResetUser, SignOut} from '../actionCrea
               <Link to="/artists" ><Tab label="Artists" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/albums" ><Tab label="Albums" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/songs" ><Tab label="Pete's Treats" onClick={() => props.closeSearchForm()} /></Link>
+              <Link to="/slaps" ><Tab label="Matt's Slaps" onClick={() => props.closeSearchForm()} /></Link>
               <Link to="/profile" ><Tab label="Profile" onClick={() => props.closeSearchForm()} /></Link>
               <Tab label="Search" onClick={() => props.openSearchForm()}/>
               </Tabs>

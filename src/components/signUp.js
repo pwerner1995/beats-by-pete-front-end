@@ -84,7 +84,7 @@ function SignUp(props) {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    if(user !== confirm){
+    if(user !== confirm || (user === "" && confirm === "")){
       alert("Username's dont match, try again!")
       clearUserEntries()
     }else{
@@ -162,9 +162,9 @@ function SignUp(props) {
           </Button>
             <Grid container>
               <Grid item style ={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", width: "100%", marginBottom:"20%", marginTop:"5%"}}>
-                  {/* <div variant="body2" onClick={()=> props.setSignUp()} style={{color: 'black'}}> */}
+                  <div variant="body2" onClick={()=> props.setSignUpFalse()} style={{color: 'black'}}>
                     {"Already have an account? Sign In"}
-                  {/* </div> */}
+                  </div>
               </Grid>
             </Grid>
         </form>

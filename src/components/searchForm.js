@@ -150,8 +150,10 @@ function SearchForm(props) {
 
 
     return (
+    <div>
+    {props.signedIn ? 
     <form className={classes.formRoot} style={{marginTop:"5%"}} onSubmit ={(e) => fetchSearch(e)} noValidate autoComplete="off">
-        <div>
+        {/* <div> */}
         <TextField
             onChange = {(e) => handleArtistChange(e)}
             value = {artist}
@@ -185,8 +187,9 @@ function SearchForm(props) {
         </Button> 
         </div>
 
-        </div>
-    </form>
+        {/* </div> */}
+    </form> : null}
+    </div>
     );
 }
 
@@ -194,7 +197,8 @@ function msp(state){
     return {
         artists: state.artists,
         songs: state.songs,
-        albums: state.albums
+        albums: state.albums,
+        signedIn: state.signedIn
     }
 }
 

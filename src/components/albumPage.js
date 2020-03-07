@@ -42,7 +42,7 @@ function AlbumPage(props) {
             return song.album_id === props.album.id
         })
     }
-    // console.log(props)
+    console.log(albumSongs)
     if(props.album){
 
         return (

@@ -66,14 +66,15 @@ function SignIn(props) {
             let loginUser = {}
             console.log(props.users.filter((u) => u.username.includes(user))[0])
             loginUser = props.users.filter((u) => u.username.includes(user))[0]
+            console.log(loginUser)
             if(loginUser){
               props.SignInUser()
               props.SetUser(loginUser)
               // console.log(props.user)
               props.GetUserFavs(loginUser)
-            }else{
-              alert("Username not found!")
             }
+        }else{
+          alert("Username not found!")
         }
     }
 

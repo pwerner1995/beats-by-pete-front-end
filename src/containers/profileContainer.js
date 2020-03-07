@@ -24,25 +24,28 @@ class ProfileContainer extends React.Component {
             <React.Fragment>
             <CssBaseline />
             <Grid container flexGrow={1} >
+            {Object.keys(this.props.userFavs).length > 0 ? 
             <div className="profile-container" style={{display: 'flex', flexDirection: 'row', flexWrap: "wrap", justifyContent: "center", marginBottom:"20%", marginTop:"5%", width: "80%", marginLeft:"10%"}}>
                     {/* <Typography gutterBottom variant="h3" component="h3">
                         {`${this.props.user.username}'s Profile`}
                     </Typography>  */}
 
-                {this.props.userFavs === {} ? 
+                {/* {this.props.userFavs === {} || (this.props.userFavs.artists.length <1 &&  this.props.userFavs.albums.length) ? 
                     <Typography gutterBottom variant="h6" component="h6" >
                         {`You dont have any reviews yet!`}
                     </Typography> 
                     : null
-                    }
+                    } */}
                 <div>
-                    {this.props.userFavs.artists ? 
+                    {this.props.userFavs.artists.length > 0 ? 
                      <div style={{ color:"#FFA5B1" }}>
                      <Typography gutterBottom variant="h6" component="h6" >
                          {`FAVORITE ARTISTS`}
                      </Typography> 
                      </div>
-                     : null
+                     : <Typography gutterBottom variant="h6" component="h6" >
+                     {`You dont have any reviews yet!`}
+                 </Typography> 
                     }
                     
                 <Box>
@@ -54,7 +57,7 @@ class ProfileContainer extends React.Component {
                 </Box>
                 </div>
                 <div>
-                {this.props.userFavs.albums ? 
+                {this.props.userFavs.albums.length > 0  ? 
                      <div style={{ color:"#FFA5B1" }}>
                      <Typography gutterBottom variant="h6" component="h6" >
                          {`FAVORITE ALBUMS`}
@@ -106,6 +109,12 @@ class ProfileContainer extends React.Component {
 
 
             </div>
+            :   <div style={{ color:"#FFA5B1" }}>
+                    <Typography gutterBottom variant="h6" component="h6" >
+                        {`You dont have any reviews yet!`}
+                    </Typography>
+                </div>
+                }   
             </Grid>
             </React.Fragment>
         )
