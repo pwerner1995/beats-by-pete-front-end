@@ -25,37 +25,25 @@ import MattsSlaps from './containers/mattsSlaps'
 class App extends React.Component{
 
     componentDidMount(){
-
-        // console.log(this.props)
         this.props.fetchArtists()
         this.props.fetchAlbums()
         this.props.fetchSongs()
-        this.props.fetchUsers()
-        // this.props.SetUser(this.props.users[0])
-        // console.log("Testing songs:",this.props.songs)
-        
+        this.props.fetchUsers() 
     }
 
 
     
 
     render(){
-        // console.log("Songs: ", this.props.songs)
-        // console.log("Artists: ", this.props.artists)
-        // console.log("Albums:", this.props.albums)
-        // console.log("Playlist:", this.props.playlist)
     
         return (
-            <div className="App">
-                    {/* {(this.props.songs.length > 0 && this.props.playlist.length === 0) ? this.conditionalPlaylist() : null} */}
-                    
+            <div className="App">                    
                     {!this.props.signedIn && !this.props.signUp ? <SignIn /> : null}
                     {!this.props.signedIn && this.props.signUp ? <SignUp /> : null}
                     {this.props.signedIn ? <NavBar /> : null}
                     {this.props.search ? <SearchFrom /> : null}
                     {!this.props.search && this.props.signedIn? <Switch>
                         <Route path="/albums/:id" render={(routerProps) => {
-                            // console.log("test")
                             return <AlbumPage  {...routerProps}/>
                             }}/> 
                         <Route path="/artists/:id" render={(routerProps)=> <ArtistPage {...routerProps} />}/>
@@ -68,7 +56,6 @@ class App extends React.Component{
                         <Route exact path = "/home" render={() => <ArtistContainer />}/>
                         <Route exact path = "/" render={() => <ArtistContainer />}/>
                         <Route exact path = "" render={() => <ArtistContainer />}/>
-                        {/* <Route path = "/signup" render={() => <SignUp />}/> */}
 
                     </Switch> : <SearchResultsContainer />}
                     
@@ -99,15 +86,6 @@ class App extends React.Component{
     }
 
     const mdp = {
-        // return {
-        //   fetchArtists: () => dispatch(fetchArtists()),
-        //   fetchAlbums: () => dispatch(fetchAlbums()),
-        //   fetchSongs: () => dispatch(fetchSongs()),
-        //   fetchUsers: () => dispatch(fetchUsers()),
-        //   setPlaylist: (song) => dispatch(setPlaylist(song)),
-        //   setUser: () => dispatch(setUser())
-        // }
-        
           fetchArtists,
           fetchAlbums,
           fetchSongs,
