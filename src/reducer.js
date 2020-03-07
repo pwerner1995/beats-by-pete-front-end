@@ -56,15 +56,12 @@ function reducer(prevState = defaultState, action){
     case "SET_REVIEWS":
       return {...prevState, songs: action.payload.reviews}
     case "SET_USER":
-        // console.log(action.payload.user)
       return {...prevState, user: action.payload}
     case "SET_USERS":
       return {...prevState, users: action.payload.users}
     case "SET_USER_FAVS":
-        // console.log(action.payload.user)
       return {...prevState, userFavs: action.payload}
     case "SET_USER_REVIEWS":
-        // console.log(action.payload.recent_reviews)
       return {...prevState, recentRevs: action.payload}
     case "SET_PLAYLIST":
         return {...prevState, playlist: [action.payload.playlist]} 

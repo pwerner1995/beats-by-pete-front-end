@@ -117,11 +117,6 @@ export const  fetchUsers = () => {
         })
         .then(resp => resp.json())
         .then(data => {
-            // console.log(data[0])
-            // dispatch({
-            //     type:"SET_USER", //temporary default user for testing
-            //     payload: {user: data[0]}
-            // })
             dispatch({
             type: "SET_USERS",
             payload: {users: data}
@@ -195,8 +190,7 @@ export function resetPlaylist(){
     }
 }
 export const setPlaylist = (song) => {
-    // showPlayer()
-    // resetPlaylist()
+
     return (dispatch) => {
         dispatch({type: "SHOW_PLAYER"})
         dispatch({type: "RESET_PLAYLIST"})
@@ -477,7 +471,6 @@ export const postSearch = (songs, searchTerms) => {
     console.log("Search Terms: ", searchTerms)
 
     return (dispatch) => {
-        // artists.forEach((artist) => {
             fetch("http://localhost:3000/api/v1/artists",{method: "POST",
                 headers:{
                     "Content-Type": "application/json",
@@ -523,7 +516,6 @@ export const postSearch = (songs, searchTerms) => {
                         songSearchResults: [...resp.searchSongs]
                     }
                 })
-                // setArtistSearchResults([...resp])
             })
     }
 }
